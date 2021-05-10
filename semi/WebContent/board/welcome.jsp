@@ -27,6 +27,10 @@
  
      <button type="submit" class="btn btn-default">로그인</button>
 </form>
+<form method="post"
+			action="${pageContext.request.contextPath}/SignUpFormController.do">
+			<input type="submit" value="회원가입">
+		</form>
 </c:when>
 <c:otherwise>
 <%-- <a href="${pageContext.request.contextPath}/ListController.do">홈</a>&nbsp;&nbsp;--%>

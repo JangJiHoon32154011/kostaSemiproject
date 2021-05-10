@@ -56,6 +56,49 @@ public class MemberDAO {
 		return vo;
 	}
 	
+	public void signUp(String id, String password, String name, String email) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		//ResultSet rs = null;
+		
+		try { 
+			con = dataSource.getConnection();
+			String sql = "insert into member(id,password,name,email) values(?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+			pstmt.setString(3, name);
+			pstmt.setString(4, email);
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
+	}
+	public int duplicateId(String id) throws SQLException {
+		int count=0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append(" select count(id) as cnt ");
+			sql.append(" from member ");
+			sql.append(" where id = ? ");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next())
+				count = rs.getInt("cnt");
+		} catch(Exception e) {
+			System.out.println("아이디 중복 확인 실패 : " + e);
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return count;
+	}
+	
 }
 
 

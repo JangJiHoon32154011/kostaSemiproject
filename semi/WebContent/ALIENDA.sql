@@ -10,6 +10,8 @@ coupon number default 0,
 status number default 0 
 )
 
+select * from member;
+
 --ANSWER--
 drop table answer
 
