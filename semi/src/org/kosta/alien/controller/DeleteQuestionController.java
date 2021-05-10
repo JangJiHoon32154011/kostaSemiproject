@@ -1,4 +1,5 @@
-package org.kosta.webstudy25.controller;
+package org.kosta.alien.controller;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

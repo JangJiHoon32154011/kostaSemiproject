@@ -199,5 +199,17 @@ public class QuestionBoardDAO {
 		}
 		
 	}
-	
+	public void deleteQuestion(int qno) throws SQLException{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="delete from question where question_no=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, qno);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
 }
