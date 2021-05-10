@@ -24,7 +24,6 @@ public class ListController  implements Controller {
 			request.setAttribute("list", QuestionBoardDAO.getInstance().getWebList());
 		}
 		
-		
 		request.setAttribute("url", "/board/list.jsp");		
 		return "/template/layout.jsp";
 	}

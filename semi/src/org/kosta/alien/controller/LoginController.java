@@ -17,7 +17,10 @@ public class LoginController implements Controller {
 		if (mvo != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("mvo", mvo);	
-			System.out.println(session.getAttribute("mvo"));
+			int coupon=MemberDAO.getInstance().checkCoupon(id);
+			if(coupon>=10) {
+				System.out.println("10개 받았습니다");
+			}
 			return "redirect:index.jsp";
 		} else {			
 			return "redirect:member/login-fail.jsp";		

@@ -6,8 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.kosta.alien.model.AnswerDAO;
 import org.kosta.alien.model.AnswerVO;
-import org.kosta.alien.model.MemberAnswerBoardDAO;
-import org.kosta.alien.model.MemberAnswerVO;
+
 import org.kosta.alien.model.MemberVO;
 
 public class MyAnswerDetailController implements Controller {

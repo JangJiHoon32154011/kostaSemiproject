@@ -31,9 +31,12 @@ create sequence answer_seq;
 
 drop sequence answer_seq;
 
+
+select coupon from member where id='dong'
 --QUESTION--
 drop table question;
-
+update member set coupon=coupon+3 where id='d'
+select * from member
 create table question(
 	question_no number primary key,
 	title varchar2(100) not null,

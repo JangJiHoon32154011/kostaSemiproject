@@ -98,7 +98,40 @@ public class MemberDAO {
 		}
 		return count;
 	}
-	
+	public void updateCoupon(String id, int num) throws SQLException{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="update member set coupon=coupon+? where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, id);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
+	public int checkCoupon(String id) throws SQLException{
+		Connection con=null;
+		int coupon=0;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select coupon from member where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				coupon=rs.getInt(1);
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		
+		return coupon;
+	}
 }
 
 

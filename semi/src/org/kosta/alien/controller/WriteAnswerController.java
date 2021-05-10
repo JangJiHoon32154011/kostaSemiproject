@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.kosta.alien.model.AnswerDAO;
 import org.kosta.alien.model.AnswerVO;
-import org.kosta.alien.model.MemberAnswerVO;
+
 import org.kosta.alien.model.MemberVO;
 
 public class WriteAnswerController implements Controller {
@@ -22,7 +22,6 @@ public class WriteAnswerController implements Controller {
 		MemberVO mvo=(MemberVO)session.getAttribute("mvo");	
 		AnswerVO javo=new AnswerVO(mvo.getId(), qno, contents);
 		AnswerDAO.getInstance().Answer(javo);
-		
 		request.setAttribute("url", "/board/list.jsp");		
 		return "/template/layout.jsp";
 	}
