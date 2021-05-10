@@ -6,15 +6,17 @@ id varchar2(100) primary key,
 name varchar2(100) not null,
 password varchar2(100) not null,
 email varchar2(100) not null,
+stamp number default 0,
 coupon number default 0,
 status number default 0 
 )
-
+insert into member(id,name,password, email, stamp,status) values('2','님','1','java@java.com',15,0);
 select * from member;
-
+select * from JANG_ANSWER
 --ANSWER--
 drop table answer
 
+update member set stamp=stamp-10 where id='2';
 create table answer(
 	id varchar2(100) not null,
 	question_no number not null,
@@ -31,7 +33,9 @@ create sequence answer_seq;
 
 drop sequence answer_seq;
 
-
+-- 이게말이야 스템프 / 쿠폰이 있어. 한잔은 스탬프 1잔 무료는 쿠폰
+-- 회원이 마이페이지 : side navBar 를 내가푼 문제 / 쿠폰함이 있을 텐데 스템프 : 쿠폰 몇개 
+-- 스쿵이랑 연결하지말고 
 select coupon from member where id='dong'
 --QUESTION--
 drop table question;

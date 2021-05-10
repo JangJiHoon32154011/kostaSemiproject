@@ -16,8 +16,8 @@ public class CouponController implements Controller {
 		}
 		String id=request.getParameter("id");
 		int no=Integer.parseInt(request.getParameter("num"));
-		MemberDAO.getInstance().updateCoupon(id, no);
-		
+		MemberDAO.getInstance().updateStamp(id, no);
+		MemberDAO.getInstance().updateCoupon(id);
 		return "redirect:index.jsp";
 	}
 

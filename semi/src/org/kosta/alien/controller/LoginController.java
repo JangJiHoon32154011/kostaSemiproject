@@ -17,7 +17,7 @@ public class LoginController implements Controller {
 		if (mvo != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("mvo", mvo);	
-			int coupon=MemberDAO.getInstance().checkCoupon(id);
+			int coupon=MemberDAO.getInstance().checkStamp(id);
 			if(coupon>=10) {
 				System.out.println("10개 받았습니다");
 			}

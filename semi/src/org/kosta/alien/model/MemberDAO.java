@@ -98,12 +98,12 @@ public class MemberDAO {
 		}
 		return count;
 	}
-	public void updateCoupon(String id, int num) throws SQLException{
+	public void updateStamp(String id, int num) throws SQLException{
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="update member set coupon=coupon+? where id=?";
+			String sql="update member set stamp=stamp+? where id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.setString(2, id);
@@ -112,25 +112,47 @@ public class MemberDAO {
 			closeAll(pstmt, con);
 		}
 	}
-	public int checkCoupon(String id) throws SQLException{
+	public int checkStamp(String id) throws SQLException{
 		Connection con=null;
-		int coupon=0;
+		int stamp=0;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="select coupon from member where id=?";
+			String sql="select stamp from member where id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				coupon=rs.getInt(1);
+				stamp=rs.getInt(1);
 			}
 		}finally {
 			closeAll(rs, pstmt, con);
 		}
 		
-		return coupon;
+		return stamp;
+	}
+	public void updateCoupon(String id) throws SQLException{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
+		try {
+			con=dataSource.getConnection();
+			if(MemberDAO.getInstance().checkStamp(id)>10) {
+				String sql="update member set stamp=stamp-10 where id=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				pstmt.executeUpdate();
+				pstmt.close();
+				String sql2="update member set coupon=coupon+1 where id=?";
+				pstmt=con.prepareStatement(sql2);
+				pstmt.setString(1, id);
+				pstmt.executeUpdate();
+				pstmt.close();
+			}
+		}finally {
+			closeAll(pstmt, con);
+		}
 	}
 }
 
