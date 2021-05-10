@@ -2,14 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>idCheckResult.jsp</title>
-</head>
-<body>
-<div style="text-align: center"></div>
+
 <h3>아이디 중복 확인 결과</h3>
 <%
 	String id = request.getParameter("id");
@@ -33,6 +26,3 @@ function apply(id) {
 <hr>
 <a href="javascript:history.back()">다시 시도</a> &nbsp; &nbsp;
 <a href="javascript:window.close()">창닫기</a>
-
-</body>
-</html>

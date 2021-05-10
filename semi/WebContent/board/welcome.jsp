@@ -10,7 +10,7 @@
 			location.href="${pageContext.request.contextPath}/LogoutController.do";
 	}
 </script>
-<img src="${pageContext.request.contextPath}/img/alien.png">
+
 <c:choose>
 <c:when test="${sessionScope.mvo==null}">
 <h3>Welcome KOSTA 215기 면접시스템</h3>
@@ -24,13 +24,15 @@
    <input type="password"  class="form-control" name="password"  placeholder="비밀번호" size="12">
     
     </div>
- 
+ 	
      <button type="submit" class="btn btn-default">로그인</button>
 </form>
+<br>
 <form method="post"
 			action="${pageContext.request.contextPath}/SignUpFormController.do">
-			<input type="submit" value="회원가입">
+			<button type="submit" class="btn btn-default">회원가입</button> 
 		</form>
+
 </c:when>
 <c:otherwise>
 <%-- <a href="${pageContext.request.contextPath}/ListController.do">홈</a>&nbsp;&nbsp;--%>
@@ -43,5 +45,5 @@
 
 </c:choose>
 <div style="text-align:center;">
-
+<img src="${pageContext.request.contextPath}/img/hoonjj.jpg">
 </div>
