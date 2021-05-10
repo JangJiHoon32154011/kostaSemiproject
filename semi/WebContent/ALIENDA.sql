@@ -38,7 +38,7 @@ create sequence question_seq;
 
 update question set contents='제대로~' where question_no=3;
 
-
+delete from question where question_no=10
 drop sequence question_seq;
 --ORA-01400: cannot insert NULL : not null이라 생기는 문제
 -- 관리자가 질문 삽입 
@@ -172,7 +172,7 @@ delete from jang_answer where answer_no=1
 --업데이트하기 
 update board set title=?,content=? where no=?;
 update jang_answer set answer_content='update' where  id= 'java' and question_no=1;
-
+`
 -- 해당 질문에 대한 답 모두 보기
 select ja.question_no, ja.answer_date, q.title, q.contents
 from jang_answer ja, member m, question q

@@ -17,6 +17,9 @@
 <c:choose>
 <c:when test="${sessionScope.mvo.status==1 }">
 <a href="${pageContext.request.contextPath}/UpdateQuestionFormController.do?questionNo=${requestScope.qvo.questionNo}">문제수정하기</a>
+<br>
+<a href="${pageContext.request.contextPath}/DeleteQuestionController.do?questionNo=${requestScope.qvo.questionNo}">문제 삭제하기</a>
+	
 	</c:when>
 	<c:otherwise>
 	
