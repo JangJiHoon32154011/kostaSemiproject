@@ -16,7 +16,7 @@ drop table answer
 create table answer(
 	id varchar2(100) not null,
 	question_no number not null,
-	answer_nuuo number,
+	answer_no number,
 	answer_content varchar2(100) not null,
 	answer_date varchar2(100) not null,
 	hits number default 0,
