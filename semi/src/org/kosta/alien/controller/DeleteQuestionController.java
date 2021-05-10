@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.kosta.webstudy25.model.QuestionBoardDAO;
+import org.kosta.alien.model.QuestionBoardDAO;
 
 public class DeleteQuestionController implements Controller {
 
