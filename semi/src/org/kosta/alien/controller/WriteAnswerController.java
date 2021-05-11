@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.kosta.alien.model.AnswerDAO;
 import org.kosta.alien.model.AnswerVO;
-
+import org.kosta.alien.model.MemberDAO;
 import org.kosta.alien.model.MemberVO;
 
 public class WriteAnswerController implements Controller {
@@ -22,6 +22,9 @@ public class WriteAnswerController implements Controller {
 		MemberVO mvo=(MemberVO)session.getAttribute("mvo");	
 		AnswerVO javo=new AnswerVO(mvo.getId(), qno, contents);
 		AnswerDAO.getInstance().Answer(javo);
+		MemberDAO.getInstance().updateStamp(mvo.getId(), 1);
+		int stampNo=MemberDAO.getInstance().checkStamp(mvo.getId());
+		MemberDAO.getInstance().updateCoupon(mvo.getId(),stampNo);
 		request.setAttribute("url", "/board/list.jsp");		
 		return "/template/layout.jsp";
 	}

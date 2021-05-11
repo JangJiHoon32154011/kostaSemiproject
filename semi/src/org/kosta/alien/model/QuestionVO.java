@@ -1,6 +1,7 @@
 package org.kosta.alien.model;
 
 public class QuestionVO {
+	
 	private String questionNo;
 	private String title;
 	private String id;
