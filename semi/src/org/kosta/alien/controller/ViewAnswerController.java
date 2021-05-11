@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.kosta.alien.model.AnswerDAO;
 import org.kosta.alien.model.AnswerVO;
 import org.kosta.alien.model.MemberVO;
+import org.kosta.alien.model.QuestionBoardDAO;
+import org.kosta.alien.model.QuestionVO;
 
 public class ViewAnswerController implements Controller {
 
@@ -20,6 +22,9 @@ public class ViewAnswerController implements Controller {
 		}
 		MemberVO mvo=(MemberVO)session.getAttribute("mvo");
 		int qno=Integer.parseInt(request.getParameter("qno"));
+		String no=request.getParameter("qno");
+		QuestionVO qvo=QuestionBoardDAO.getInstance().getPostingByNo(no);
+		request.setAttribute("qvo", qvo);
 		ArrayList<AnswerVO> list
 		=AnswerDAO.getInstance().getAllAnswerList(qno);
 		request.setAttribute("list", list);

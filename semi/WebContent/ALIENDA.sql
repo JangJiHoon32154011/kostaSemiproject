@@ -52,3 +52,7 @@ create table question(
 create sequence question_seq;
 
 drop sequence question_seq;
+
+select a.question_no, a.id, a.answer_date, a.answer_content,a.answer_no
+from answer a, member m, question q 
+where a.id=m.id and q.question_no=2 and a.question_no=2 

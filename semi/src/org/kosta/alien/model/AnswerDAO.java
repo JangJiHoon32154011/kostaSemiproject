@@ -80,11 +80,23 @@ public class AnswerDAO{
 		try {
 			con=dataSource.getConnection();
 			StringBuilder sql=new StringBuilder();
-			sql.append("select a.question_no, a.id, a.answer_date, q.title, q.contents ");
+			sql.append("select a.question_no, a.id, a.answer_date, a.answer_content,a.answer_no ");
 			sql.append("from answer a, member m, question q " );
 			sql.append("where a.id=m.id and q.question_no=? and a.question_no=? ");
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setInt(1, qno);
+			pstmt.setInt(2, qno);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				//이 메세지 나올때는 ps.setString() 하는 부분이 제대로 되어있는지 살펴본다. method 매개인자 개수와 ps.setString 할때 숫자가 틀렸을때 혹은 변수가 틀릴때 나는 에러이다
+				AnswerVO avo=new AnswerVO();
+				avo.setQuestionNo(rs.getString(1));
+				avo.setId(rs.getString(2));
+				avo.setAnswerDate(rs.getString(3));
+				avo.setAnswerContent(rs.getString(4));
+				avo.setAnswerNo(rs.getString(5));
+				list.add(avo);
+			}
 		}finally {
 			closeAll(rs, pstmt, con);
 		}
