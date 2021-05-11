@@ -15,7 +15,7 @@ select * from member;
 select * from JANG_ANSWER
 --ANSWER--
 drop table answer
-
+select * from member -- 4 / 2 32
 update member set stamp=stamp-10 where id='2';
 create table answer(
 	id varchar2(100) not null,
@@ -32,10 +32,10 @@ create table answer(
 create sequence answer_seq;
 
 drop sequence answer_seq;
-
+update member set stamp=3,coupon=2 where id='1'
 -- 이게말이야 스템프 / 쿠폰이 있어. 한잔은 스탬프 1잔 무료는 쿠폰
 -- 회원이 마이페이지 : side navBar 를 내가푼 문제 / 쿠폰함이 있을 텐데 스템프 : 쿠폰 몇개 
--- 스쿵이랑 연결하지말고 
+
 select coupon from member where id='dong'
 --QUESTION--
 drop table question;

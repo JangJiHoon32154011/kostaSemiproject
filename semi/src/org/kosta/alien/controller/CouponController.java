@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.kosta.alien.model.MemberDAO;
+import org.kosta.alien.model.MemberVO;
 
 public class CouponController implements Controller {
 
@@ -14,10 +15,12 @@ public class CouponController implements Controller {
 		if(session==null||session.getAttribute("mvo")==null){
 			return "redirect:index.jsp";
 		}
+		MemberVO mvo=(MemberVO) session.getAttribute("mvo");
 		String id=request.getParameter("id");
 		int no=Integer.parseInt(request.getParameter("num"));
 		MemberDAO.getInstance().updateStamp(id, no);
-		MemberDAO.getInstance().updateCoupon(id);
+		int stampNo=MemberDAO.getInstance().checkStamp(id);
+		MemberDAO.getInstance().updateCoupon(id,stampNo);
 		return "redirect:index.jsp";
 	}
 
