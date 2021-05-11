@@ -127,7 +127,13 @@ public class QuestionBoardDAO {
 		}
 		return list;
 	}
-
+	// 이거 question으로 바꾸는게 어때???
+	/***
+	 * 번호에 따른 문제 받아오기
+	 * @param questionNo
+	 * @return
+	 * @throws SQLException
+	 */
 	public QuestionVO getPostingByNo(String questionNo) throws SQLException {
 		QuestionVO qvo = null;
 		Connection con = null;

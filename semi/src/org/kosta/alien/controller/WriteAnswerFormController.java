@@ -11,24 +11,36 @@ import org.kosta.alien.model.QuestionVO;
 
 public class WriteAnswerFormController implements Controller {
 
-	@Override
+	/***
+	 * 답안 작성을 누를때 작동합니다
+	 */
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session=request.getSession(false);
-		if(session==null||session.getAttribute("mvo")==null){
+		HttpSession session = request.getSession(false);
+		// 로그인 안 되어있을 때 처리
+		if (session == null || session.getAttribute("mvo") == null) {
 			return "redirect:index.jsp";
 		}
-		String qno=request.getParameter("questionNo");
-		QuestionVO vo=QuestionBoardDAO.getInstance().getPostingByNo(qno);
+		// 문제 번호
+		String qno = request.getParameter("questionNo");
+		// NO로 questionVO를 받아온다
+		QuestionVO vo = QuestionBoardDAO.getInstance().getPostingByNo(qno);
+		// vo를 설정
 		request.setAttribute("vo", vo);
-		int qno2=Integer.parseInt(request.getParameter("questionNo"));
-		MemberVO mvo=(MemberVO)session.getAttribute("mvo");
-		Boolean flag=AnswerDAO.getInstance().getUpdateCheck(mvo.getId(), qno2);
-		if(flag) {
-			request.setAttribute("url", "/board/writeAnswer.jsp");	
-		}else {
-			request.setAttribute("url", "/board/welcome.jsp");
+		// 로그인 된 memberVO 받기(session)
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+
+		int flag = AnswerDAO.getInstance().getUpdateCheck(mvo.getId(), Integer.parseInt(qno));
+		if (flag > 0) {// 푼 문제
+			
+			request.setAttribute("question_NO", qno);
+
+			System.out.println("푼 문제에 들어왔습니다");
+			request.setAttribute("url", "/question-fail.jsp");
+		} else {// 안 푼 문제
+			request.setAttribute("url", "/board/writeAnswer.jsp");
+			System.out.println("안 푼 문제에 들어왔습니다");
 		}
-				
+
 		return "/template/layout.jsp";
 	}
 

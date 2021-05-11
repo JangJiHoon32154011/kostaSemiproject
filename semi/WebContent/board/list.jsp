@@ -16,7 +16,7 @@
 			<tr>
 				<td>${qvo.questionNo }</td>
 				<td><c:choose>
-						<c:when test="${sessionScope.qvo!=null}">
+						<c:when test="${sessionScope.mvo!=null}">
 							<a
 								href="${pageContext.request.contextPath}/PostDetailController.do?questionNo=${qvo.questionNo }">
 								${qvo.title }</a>
