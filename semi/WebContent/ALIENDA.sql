@@ -57,12 +57,11 @@ create table question(
 	hits number default 0,
 	answercount number default 0
 )
+
+select distinct(category) from QUESTION
 create sequence question_seq;
 drop sequence question_seq;
-<<<<<<< HEAD
 
-<<<<<<< HEAD
-drop sequence question_seq;
 
 select * from question
 -- paging
@@ -78,14 +77,12 @@ WHERE  rnum BETWEEN 1 AND 10;
 
 
 
-
-
-=======
 select a.question_no, a.id, a.answer_date, a.answer_content,a.answer_no
 from answer a, member m, question q 
 where a.id=m.id and q.question_no=2 and a.question_no=2 
 
 select answ
+<<<<<<< HEAD
 >>>>>>> branch 'main' of https://github.com/JangJiHoon32154011/kostaSemiproject.git
 insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'java란?','뭘까요~?','se');
 insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'jdbc란?','뭘까요~?','jdbc');
@@ -131,3 +128,6 @@ insert into QUESTION(question_no,title,contents,category) values(question_seq.ne
 
 select count(*) from answer where question_no=37 and id='java'
 select count(*) from answer where question_no=31 and id='java'
+=======
+
+>>>>>>> branch 'main' of https://github.com/JangJiHoon32154011/kostaSemiproject.git
