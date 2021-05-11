@@ -52,3 +52,20 @@ create table question(
 create sequence question_seq;
 
 drop sequence question_seq;
+
+select * from question
+-- paging
+SELECT B.question_no,B.title
+FROM ( 
+SELECT row_number() over(ORDER BY question_no DESC) as rnum, 
+question_no,title
+FROM question 
+WHERE category = 'se'
+) B
+WHERE  rnum BETWEEN 1 AND 10;
+
+
+
+
+
+
