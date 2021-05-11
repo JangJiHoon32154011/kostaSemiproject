@@ -98,6 +98,24 @@ public class MemberDAO {
 		}
 		return count;
 	}
+	
+	public void updateMember(String id, String password, String name, String email) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "update member set name=?,password=?,email=? where id=? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, password);
+			pstmt.setString(3, email);
+			pstmt.setString(4, id);
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
+	}
+	
 	public void updateStamp(String id, int num) throws SQLException{
 		Connection con=null;
 		PreparedStatement pstmt=null;

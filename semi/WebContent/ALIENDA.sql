@@ -31,7 +31,14 @@ create table answer(
 )
 create sequence answer_seq;
 
+update answer set hits=hits+1 where answer_no=1
+update answer set hits=hits+1 where answer_no=1
+select * from answer
 drop sequence answer_seq;
+
+select id, answer_content, answer_date, hits, like_count
+from answer
+where answer_no=1
 
 update member set stamp=3,coupon=2 where id='1'
 -- 이게말이야 스템프 / 쿠폰이 있어. 한잔은 스탬프 1잔 무료는 쿠폰
@@ -51,12 +58,32 @@ create table question(
 	answercount number default 0
 )
 create sequence question_seq;
-
 drop sequence question_seq;
 <<<<<<< HEAD
 
+<<<<<<< HEAD
+drop sequence question_seq;
+
+select * from question
+-- paging
+SELECT B.question_no,B.title
+FROM ( 
+SELECT row_number() over(ORDER BY question_no DESC) as rnum, 
+question_no,title
+FROM question 
+WHERE category = 'se'
+) B
+WHERE  rnum BETWEEN 1 AND 10;
+
+
+
+
+
+
+=======
 select a.question_no, a.id, a.answer_date, a.answer_content,a.answer_no
 from answer a, member m, question q 
 where a.id=m.id and q.question_no=2 and a.question_no=2 
-=======
+
+select answ
 >>>>>>> branch 'main' of https://github.com/JangJiHoon32154011/kostaSemiproject.git
