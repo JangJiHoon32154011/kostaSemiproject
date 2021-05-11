@@ -188,5 +188,31 @@ public class AnswerDAO{
 			closeAll(pstmt, con);
 		}
 	}
+	public AnswerVO getOtherDetailAnswer(int ano) throws SQLException{
+		AnswerVO avo=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=dataSource.getConnection();
+			StringBuilder  sql=new StringBuilder();
+			sql.append("select id, question_no, answer_no, answer_content, answer_date");
+			sql.append(" from answer where answer_no=?");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setInt(1, ano);		
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				avo=new AnswerVO();
+				avo.setId(rs.getString(1));
+				avo.setQuestionNo(rs.getString(2));
+				avo.setAnswerNo(rs.getString(3));
+				avo.setAnswerContent(rs.getString(4));
+				avo.setAnswerDate(rs.getString(5));
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return avo;
+	}
 	
 }
