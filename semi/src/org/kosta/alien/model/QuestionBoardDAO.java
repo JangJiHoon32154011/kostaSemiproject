@@ -306,4 +306,27 @@ public class QuestionBoardDAO {
 		}
 		return list;
 	}
+	
+	//힌트보기
+		public HintVO getHintByQuestionNo(String questionNo) throws SQLException{
+			HintVO hvo=null;
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			try {
+				   con=dataSource.getConnection();
+				   String sql="select h.hint_content from question q, hint h where q.question_no=h.question_no and q.question_no=?";
+				   pstmt=con.prepareStatement(sql);
+				   pstmt.setString(1, questionNo);
+				   rs=pstmt.executeQuery();
+				   if(rs.next()) {
+					   hvo=new HintVO();
+					   hvo.setContents(rs.getString(1));
+				   }
+			   }finally {
+				   closeAll(rs, pstmt, con);
+			   }
+			   return hvo;
+			
+		}
 }
