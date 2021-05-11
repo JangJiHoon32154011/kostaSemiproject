@@ -17,6 +17,8 @@ select * from JANG_ANSWER
 drop table answer
 select * from member -- 4 / 2 32
 update member set stamp=stamp-10 where id='2';
+
+
 create table answer(
 	id varchar2(100) not null,
 	question_no number not null,
@@ -101,15 +103,17 @@ WHERE category = 'se'
 WHERE  rnum BETWEEN 1 AND 10;
 
 <<<<<<< HEAD
+drop table answer_like
 create table answer_like(
 	id varchar2(100), 
 	answer_no number, 
-	CONSTRAINT fk_like_mid FOREIGN KEY(id) REFERENCES member(id),
+	like_flag number default 0,
+		CONSTRAINT fk_like_mid FOREIGN KEY(id) REFERENCES member(id),
 	CONSTRAINT fk_like_ano FOREIGN KEY(answer_no) REFERENCES answer(answer_no),
 	constraint pk_answer_like primary key(id, answer_no)
 	)
 =======
-
+--flag 가 있으면 if(flag==0){ 
 
 
 select a.question_no, a.id, a.answer_date, a.answer_content,a.answer_no
