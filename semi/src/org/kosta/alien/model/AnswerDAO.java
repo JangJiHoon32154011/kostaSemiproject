@@ -188,6 +188,37 @@ public class AnswerDAO{
 			closeAll(pstmt, con);
 		}
 	}
+	/***
+	 * 이미 푼 문제를 처리합니다.
+	 * @param id:로그인한 아이디
+	 * @param qno:현재 문제
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getUpdateCheck(String id,int qno) throws SQLException {
+		
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=-1;
+		try {
+			con=dataSource.getConnection();
+			String sql="select count(*) from answer where question_no=? and id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, qno);
+			pstmt.setString(2, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+					result= rs.getInt(1);
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		// 안 푼 문제면 -1, 푼 문제면 +1
+		return result;
+	}
+	
+
 	public AnswerVO getOtherDetailAnswer(int ano) throws SQLException{
 		AnswerVO avo=null;
 		Connection con=null;

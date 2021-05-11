@@ -65,6 +65,24 @@ drop sequence question_seq;
 
 
 select * from question
+
+--HINT--
+drop table hint;
+alter table answer drop constraint question_no_fk
+
+create table hint(
+	question_no number not null,
+	hint_content varchar2(100) not null,
+	constraint question_no_fk_hint foreign key(question_no) references question(question_no),
+	constraint pk_hint primary key(question_no)
+)
+
+insert into hint(question_no,hint_content) values (1,'hi');
+
+select h.hint_content from question q, hint h where q.question_no=h.question_no and q.question_no=1;
+
+select * from hint;
+
 -- paging
 SELECT B.question_no,B.title
 FROM ( 
@@ -83,6 +101,46 @@ from answer a, member m, question q
 where a.id=m.id and q.question_no=2 and a.question_no=2 
 
 select answ
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'java란?','뭘까요~?','se');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'jdbc란?','뭘까요~?','jdbc');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'web 이란?','뭘까요~?','web');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'java란?','뭘까요~?','se');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'jdbc란?','뭘까요~?','jdbc');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'web 이란?','뭘까요~?','web');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'java란?','뭘까요~?','se');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'jdbc란?','뭘까요~?','jdbc');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'web 이란?','뭘까요~?','web');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'java란?','뭘까요~?','se');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'jdbc란?','뭘까요~?','jdbc');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'web 이란?','뭘까요~?','web');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'java란?','뭘까요~?','se');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'jdbc란?','뭘까요~?','jdbc');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'web 이란?','뭘까요~?','web');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'java란?','뭘까요~?','se');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'jdbc란?','뭘까요~?','jdbc');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'web 이란?','뭘까요~?','web');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'java란?','뭘까요~?','se');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'jdbc란?','뭘까요~?','jdbc');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'web 이란?','뭘까요~?','web');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'java란?','뭘까요~?','se');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'jdbc란?','뭘까요~?','jdbc');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'web 이란?','뭘까요~?','web');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'java란?','뭘까요~?','se');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'jdbc란?','뭘까요~?','jdbc');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'web 이란?','뭘까요~?','web');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'java란?','뭘까요~?','se');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'jdbc란?','뭘까요~?','jdbc');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'web 이란?','뭘까요~?','web');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'java란?','뭘까요~?','se');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'jdbc란?','뭘까요~?','jdbc');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'web 이란?','뭘까요~?','web');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'java란?','뭘까요~?','se');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'jdbc란?','뭘까요~?','jdbc');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'web 이란?','뭘까요~?','web');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'java란?','뭘까요~?','se');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'jdbc란?','뭘까요~?','jdbc');
+insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'web 이란?','뭘까요~?','web');
+
 
 drop table jang_answer
 drop table member_answer
@@ -276,3 +334,10 @@ insert into QUESTION(question_no,title,contents,category) values(question_seq.ne
 insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'java란?','뭘까요~?','se');
 insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'jdbc란?','뭘까요~?','jdbc');
 insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'web 이란?','뭘까요~?','web');
+
+
+
+select count(*) from answer where question_no=37 and id='java'
+select count(*) from answer where question_no=31 and id='java'
+
+
