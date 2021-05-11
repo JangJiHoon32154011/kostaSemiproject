@@ -173,6 +173,19 @@ public class MemberDAO {
 			closeAll(pstmt, con);
 		}
 	}
+	public void deleteMember(String id) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="delete from member where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
 }
 
 
