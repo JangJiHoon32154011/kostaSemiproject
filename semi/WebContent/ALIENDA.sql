@@ -11,8 +11,10 @@ coupon number default 0,
 status number default 0 
 )
 insert into member(id,name,password, email, stamp,status) values('2','님','1','java@java.com',15,0);
+insert into member(id,name,password, email, stamp,status) values('kim','미남','00','hi@naver.com',22,1);
 select * from member;
 select * from JANG_ANSWER
+delete from member where id='2'
 --ANSWER--
 drop table answer
 select * from member -- 4 / 2 32
@@ -40,7 +42,7 @@ create table t1(
 insert into t1 values('java','아이유');
 insert into t1 values('java','어');
 create sequence answer_seq;
-
+drop table answer
 update answer set hits=hits+1 where answer_no=1
 update answer set hits=hits+1 where answer_no=1
 select * from answer
