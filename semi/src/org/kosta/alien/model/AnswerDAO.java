@@ -188,5 +188,26 @@ public class AnswerDAO{
 			closeAll(pstmt, con);
 		}
 	}
+	public boolean getUpdateCheck(String id,int qno) throws SQLException {
+		
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		boolean flag=false;
+		try {
+			con=dataSource.getConnection();
+			String sql="select count(*) from answer where question_no=? and id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, qno);
+			rs=pstmt.executeQuery();
+			if(rs.next()&&rs.getInt(1)>0) {
+				flag=true;
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return flag;
+	}
 	
 }
