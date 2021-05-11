@@ -31,6 +31,9 @@ create table answer(
 )
 create sequence answer_seq;
 
+update answer set hits=hits+1 where answer_no=1
+update answer set hits=hits+1 where answer_no=1
+select * from answer
 drop sequence answer_seq;
 
 select id, answer_content, answer_date, hits, like_count
@@ -55,7 +58,6 @@ create table question(
 	answercount number default 0
 )
 create sequence question_seq;
-
 drop sequence question_seq;
 <<<<<<< HEAD
 

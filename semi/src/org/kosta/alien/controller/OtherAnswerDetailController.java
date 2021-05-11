@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.kosta.alien.model.AnswerDAO;
 import org.kosta.alien.model.AnswerVO;
+import org.kosta.alien.model.MemberVO;
 
 public class OtherAnswerDetailController implements Controller {
 
@@ -16,10 +17,26 @@ public class OtherAnswerDetailController implements Controller {
 			return "redirect:index.jsp";
 		}
 		
+		String id=request.getParameter("id");
+		
 		int ano=Integer.parseInt(request.getParameter("ano"));
+		
+		String no=request.getParameter("ano");
+		MemberVO mvo=(MemberVO)session.getAttribute("mvo");
+		System.out.println("check"+ano+ " "+ mvo.getId());
+		
+		System.out.println(id);
+		if(mvo.getId().equals(id)==false) {
+		
+		
+			
+			AnswerDAO.getInstance().updateHit(no);	
+			
+		}
 		AnswerVO avo=AnswerDAO.getInstance().getOtherDetailAnswer(ano);
 		request.setAttribute("avo", avo);
 		request.setAttribute("url", "/board/other-answer-detail.jsp");
+		
 		return "/template/layout.jsp";
 	}
 

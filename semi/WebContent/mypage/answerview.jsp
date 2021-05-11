@@ -31,7 +31,7 @@
 				<td>${avo.questionNo }</td>
 				<td>${avo.id }</td>
 				<td>
-				<a href="${pageContext.request.contextPath}/OtherAnswerDetailController.do?ano=${avo.answerNo }">
+				<a href="${pageContext.request.contextPath}/OtherAnswerDetailController.do?ano=${avo.answerNo }&id=${avo.id }">
 								 ${avo.answerNo }</a></td>
 			</tr>
 		</c:forEach>

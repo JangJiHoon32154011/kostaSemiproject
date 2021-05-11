@@ -196,7 +196,7 @@ public class AnswerDAO{
 		try {
 			con=dataSource.getConnection();
 			StringBuilder  sql=new StringBuilder();
-			sql.append("select id, question_no, answer_no, answer_content, answer_date");
+			sql.append("select id, question_no, answer_no, answer_content, answer_date,hits");
 			sql.append(" from answer where answer_no=?");
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setInt(1, ano);		
@@ -208,11 +208,24 @@ public class AnswerDAO{
 				avo.setAnswerNo(rs.getString(3));
 				avo.setAnswerContent(rs.getString(4));
 				avo.setAnswerDate(rs.getString(5));
+				avo.setHits(rs.getInt(6));
 			}
 		}finally {
 			closeAll(rs, pstmt, con);
 		}
 		return avo;
 	}
-	
+	public void updateHit(String ano) throws SQLException{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=dataSource.getConnection(); 
+			String sql="update answer set hits=hits+1 where answer_no=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, ano);	
+			pstmt.executeUpdate();			
+		}finally{
+			closeAll(pstmt,con);
+		}
+	}
 }
