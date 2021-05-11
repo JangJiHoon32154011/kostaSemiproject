@@ -27,11 +27,12 @@ create table answer(
 	like_count number default 0,
 	constraint id_fk foreign key(id) references member(id),
 	constraint question_no_fk foreign key(question_no) references question(question_no),
-	constraint pk_jang_answer primary key(id, question_no)
+	constraint pk_answer primary key(id, question_no)
 )
 create sequence answer_seq;
 
 drop sequence answer_seq;
+
 update member set stamp=3,coupon=2 where id='1'
 -- 이게말이야 스템프 / 쿠폰이 있어. 한잔은 스탬프 1잔 무료는 쿠폰
 -- 회원이 마이페이지 : side navBar 를 내가푼 문제 / 쿠폰함이 있을 텐데 스템프 : 쿠폰 몇개 
@@ -52,7 +53,10 @@ create table question(
 create sequence question_seq;
 
 drop sequence question_seq;
+<<<<<<< HEAD
 
 select a.question_no, a.id, a.answer_date, a.answer_content,a.answer_no
 from answer a, member m, question q 
 where a.id=m.id and q.question_no=2 and a.question_no=2 
+=======
+>>>>>>> branch 'main' of https://github.com/JangJiHoon32154011/kostaSemiproject.git
