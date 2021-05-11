@@ -20,15 +20,23 @@ update member set stamp=stamp-10 where id='2';
 create table answer(
 	id varchar2(100) not null,
 	question_no number not null,
-	answer_no number,
+	answer_no number primary key,
 	answer_content varchar2(100) not null,
 	answer_date varchar2(100) not null,
 	hits number default 0,
 	like_count number default 0,
 	constraint id_fk foreign key(id) references member(id),
 	constraint question_no_fk foreign key(question_no) references question(question_no),
-	constraint pk_answer primary key(id, question_no)
+	constraint answer_unique unique(id,question_no)
 )
+-- test
+create table t1(
+	id varchar2(100) not null,
+	name varchar2(100) not null,
+	constraint unique_test1 unique(id, name)
+)
+insert into t1 values('java','아이유');
+insert into t1 values('java','어');
 create sequence answer_seq;
 
 update answer set hits=hits+1 where answer_no=1
@@ -72,18 +80,13 @@ SELECT row_number() over(ORDER BY question_no DESC) as rnum,
 question_no,title
 FROM question 
 WHERE category = 'se'
-) B
+) 
 WHERE  rnum BETWEEN 1 AND 10;
 
-
-
-
-
-
-=======
-select a.question_no, a.id, a.answer_date, a.answer_content,a.answer_no
-from answer a, member m, question q 
-where a.id=m.id and q.question_no=2 and a.question_no=2 
-
-select answ
->>>>>>> branch 'main' of https://github.com/JangJiHoon32154011/kostaSemiproject.git
+create table answer_like(
+	id varchar2(100), 
+	answer_no number, 
+	CONSTRAINT fk_like_mid FOREIGN KEY(id) REFERENCES member(id),
+	CONSTRAINT fk_like_ano FOREIGN KEY(answer_no) REFERENCES answer(answer_no),
+	constraint pk_answer_like primary key(id, answer_no)
+	)
