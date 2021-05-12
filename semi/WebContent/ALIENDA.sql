@@ -90,7 +90,7 @@ create table hint(
 
 insert into hint(question_no,hint_content) values (1,'hi');
 
-select h.hint_content from question q, hint h where q.question_no=h.question_no and q.question_no=1;
+select hint_content from hint where question_no=1;
 
 select * from hint;
 
