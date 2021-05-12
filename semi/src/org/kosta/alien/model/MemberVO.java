@@ -25,6 +25,13 @@ public class MemberVO {
 		this.coupon = coupon;
 		this.status = status;
 	}
+	
+	
+	public MemberVO(String id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
 
 	public MemberVO(String id, String password, String name) {
 		super();

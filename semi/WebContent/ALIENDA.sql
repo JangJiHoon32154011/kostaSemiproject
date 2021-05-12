@@ -59,7 +59,7 @@ create table question(
 	hits number default 0,
 	answercount number default 0
 )
-
+select id, name from member;
 select distinct(category) from QUESTION
 create sequence question_seq;
 drop sequence question_seq;
