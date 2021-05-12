@@ -315,7 +315,7 @@ public class QuestionBoardDAO {
 			ResultSet rs=null;
 			try {
 				   con=dataSource.getConnection();
-				   String sql="select h.hint_content from question q, hint h where q.question_no=h.question_no and q.question_no=?";
+				   String sql="select hint_content from hint where question_no=?";
 				   pstmt=con.prepareStatement(sql);
 				   pstmt.setString(1, questionNo);
 				   rs=pstmt.executeQuery();
