@@ -13,7 +13,8 @@ function LikeAjax(){
 	//서버가 응답할 때 callback 함수를 실행하기 위한 코드이다
 	xhr.onreadystatechange=callback;
 	//서버로 요청
-	let test=xhr.open("GET","HintController.do?questionNo=${requestScope.vo.questionNo}");
+	let test=xhr.open("GET","LikeController.do?answerNo=${requestScope.avo.answerNo}");
+	
 	console.log("1 ",xhr);
 	
 	xhr.send(null);//post 방식일때 form data 명시
@@ -42,14 +43,15 @@ function callback(){
 			
 		</tr>
 		<tr>
+		
 			<td> 조회수 : ${requestScope.avo.hits }</td>
-			<td> 좋아요 : ${requestScope.avo.likeCount }</td>
-			<td><span id="likeView"></span></td>
+			<td> 좋아요 : <span id="likeView">${requestScope.avo.likeCount }</span></td>
+
 		</tr>		
 		<tr>
 			<td colspan="5" >
 			<pre>${requestScope.avo.answerContent}</pre>
 			</td>
 		</tr>		
-		<button type="button" class="btn btn-default" id="like" onclick="LikeAjax()">좋아요</button>
+		<button type="button" class="btn btn-default" id="like" onclick="LikeAjax()">좋아요 </button>
 	</table>
