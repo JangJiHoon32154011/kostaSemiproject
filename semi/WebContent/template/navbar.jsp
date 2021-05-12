@@ -14,9 +14,8 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="${pageContext.request.contextPath}/HomeController.do">Home</a></li>
-        <li><a href="#">About</a></li>
         <li><a href="${pageContext.request.contextPath}/MypageController.do">마이페이지</a></li>
-        <li><a href="#">Contact</a></li>
+        
       </ul>
       
     </div>

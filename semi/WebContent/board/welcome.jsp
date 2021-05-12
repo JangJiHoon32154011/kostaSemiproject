@@ -9,6 +9,7 @@
 		if (f)
 			location.href = "${pageContext.request.contextPath}/LogoutController.do";
 	}
+	
 </script>
 
 <c:choose>
@@ -32,6 +33,11 @@
 		<form method="post"
 			action="${pageContext.request.contextPath}/SignUpFormController.do">
 			<button type="submit" class="btn btn-default">회원가입</button>
+		</form>
+		<br>
+		<form method="post" action = "${pageContext.request.contextPath}/FindPasswordFormController.do">
+			<button type="submit" class="btn btn-default">비밀번호 찾기</button>
+
 		</form>
 	</c:when>
 	<c:otherwise>
