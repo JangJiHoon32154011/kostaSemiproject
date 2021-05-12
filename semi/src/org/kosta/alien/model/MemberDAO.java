@@ -173,6 +173,36 @@ public class MemberDAO {
 			closeAll(pstmt, con);
 		}
 	}
+	/***
+	 * 비밀번호를 찾아줍니다.
+	 * @param id
+	 * @param name
+	 * @param mail
+	 * @return
+	 * @throws SQLException
+	 */
+	public String findPassword(String id, String name, String mail) throws SQLException {
+		String password=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			con=dataSource.getConnection();
+			String sql="SELECT password FROM member WHERE id=? AND name=? AND EMAIL=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, name);
+			pstmt.setString(3, mail);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				password=rs.getString(1);
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return password;
+	}
 }
 
 

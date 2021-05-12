@@ -340,4 +340,8 @@ insert into QUESTION(question_no,title,contents,category) values(question_seq.ne
 select count(*) from answer where question_no=37 and id='java'
 select count(*) from answer where question_no=31 and id='java'
 
+select password from member;
+select * from member;
+SELECT * FROM member WHERE id='did' AND name='양' AND EMAIL='did';
+
 
