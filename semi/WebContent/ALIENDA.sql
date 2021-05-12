@@ -49,6 +49,8 @@ update answer set hits=hits+1 where answer_no=1
 select * from answer
 drop sequence answer_seq;
 
+update answer set hits=hits+1 where answer_no=1
+select * from member
 select id, answer_content, answer_date, hits, like_count
 from answer
 where answer_no=1
