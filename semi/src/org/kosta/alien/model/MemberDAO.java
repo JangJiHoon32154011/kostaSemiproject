@@ -224,7 +224,7 @@ public class MemberDAO {
 				mvo.setId(rs.getString(1));
 				mvo.setName(rs.getString(2));
 				mvo.setStamp(rs.getInt(3));
-				mvo.setStamp(rs.getInt(4));
+				mvo.setCoupon(rs.getInt(4));
 				
 				
 			}
