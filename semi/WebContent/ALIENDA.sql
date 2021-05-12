@@ -128,7 +128,7 @@ create table answer_like(
 =======
 --flag 가 있으면 if(flag==0){ 
 delete from ANSWER_LIKE where id='1' and answer_no=5
-
+delete fro
 select a.question_no, a.id, a.answer_date, a.answer_content,a.answer_no
 from answer a, member m, question q 
 where a.id=m.id and q.question_no=2 and a.question_no=2 
