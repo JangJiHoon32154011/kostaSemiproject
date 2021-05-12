@@ -14,7 +14,7 @@
 <input type="text" class="form-control" name="id" placeholder="id" required="required"> <br>
 <label for="id">Stamp:</label>
 <input type="number" class="form-control" name="num" placeholder="num" required="required"> <br><br>
-<button type="submit"class="btn btn-default">쿠폰 주기</button>
+<button type="submit"class="btn btn-default">스탬프 주기</button>
 </div>
 </form>
 </body>
