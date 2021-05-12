@@ -109,11 +109,22 @@ drop table answer_like
 create table answer_like(
 	id varchar2(100), 
 	answer_no number, 
-	like_flag number default 0,
 		CONSTRAINT fk_like_mid FOREIGN KEY(id) REFERENCES member(id),
 	CONSTRAINT fk_like_ano FOREIGN KEY(answer_no) REFERENCES answer(answer_no),
 	constraint pk_answer_like primary key(id, answer_no)
 	)
+	
+	select id,answer_no from answer_like where id='4' and answer_no=4 
+	SELECT id from member
+	select answer_no from answer
+	insert into ANSWER_LIKE(id,answer_no) values('1',5)
+	update answer_like set ans
+	
+	u
+	select * from answer
+	update answer set like_count=like_count+1 where answer_no=5
+	
+	update answer set hits=hits+1 where answer_no=5
 =======
 --flag 가 있으면 if(flag==0){ 
 

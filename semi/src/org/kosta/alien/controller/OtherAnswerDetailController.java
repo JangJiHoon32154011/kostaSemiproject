@@ -27,9 +27,7 @@ public class OtherAnswerDetailController implements Controller {
 		
 		System.out.println(id);
 		if(mvo.getId().equals(id)==false) {
-		
-		
-			
+	
 			AnswerDAO.getInstance().updateHit(no);	
 			
 		}

@@ -12,9 +12,21 @@ public class LikeVO {
 		this.id = id;
 		this.answerNo = answerNo;
 	}
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getAnswerNo() {
+		return answerNo;
+	}
+	public void setAnswerNo(String answerNo) {
+		this.answerNo = answerNo;
+	}
 	@Override
 	public String toString() {
 		return "LikeVO [id=" + id + ", answerNo=" + answerNo + "]";
 	}
 }
-// mega coffee -> 1개 stamp 10개 -> 1 쿠촌 
