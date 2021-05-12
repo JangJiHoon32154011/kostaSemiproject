@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
@@ -173,6 +174,7 @@ public class MemberDAO {
 			closeAll(pstmt, con);
 		}
 	}
+
 	/***
 	 * 비밀번호를 찾아줍니다.
 	 * @param id
@@ -202,6 +204,66 @@ public class MemberDAO {
 			closeAll(rs, pstmt, con);
 		}
 		return password;
+	}
+
+	public void deleteMember(String id) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="delete from member where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
+	//(String id, String name, String phone, String password, String email, int stamp, int coupon,
+	
+	public ArrayList<MemberVO> getMemberIdList() throws SQLException {
+		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "select id, name, status from member";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(new MemberVO(rs.getString(1), rs.getString(2), rs.getInt(3) ));
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
+	
+	public MemberVO getMemberDetail(String id) throws SQLException{
+		MemberVO mvo=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select id, name, stamp, coupon from member where id=?";
+			pstmt= con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				mvo=new MemberVO();
+				mvo.setId(rs.getString(1));
+				mvo.setName(rs.getString(2));
+				mvo.setStamp(rs.getInt(3));
+				mvo.setCoupon(rs.getInt(4));
+				
+				
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return mvo;
 	}
 }
 

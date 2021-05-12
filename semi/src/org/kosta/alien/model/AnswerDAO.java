@@ -227,7 +227,7 @@ public class AnswerDAO{
 		try {
 			con=dataSource.getConnection();
 			StringBuilder  sql=new StringBuilder();
-			sql.append("select id, question_no, answer_no, answer_content, answer_date,hits");
+			sql.append("select id, question_no, answer_no, answer_content, answer_date,hits,like_count");
 			sql.append(" from answer where answer_no=?");
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setInt(1, ano);		
@@ -240,6 +240,7 @@ public class AnswerDAO{
 				avo.setAnswerContent(rs.getString(4));
 				avo.setAnswerDate(rs.getString(5));
 				avo.setHits(rs.getInt(6));
+				avo.setLikeCount(rs.getInt(7));
 			}
 		}finally {
 			closeAll(rs, pstmt, con);
