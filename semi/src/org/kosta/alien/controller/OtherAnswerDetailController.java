@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import org.kosta.alien.model.AnswerDAO;
 import org.kosta.alien.model.AnswerVO;
+import org.kosta.alien.model.LikeDAO;
+import org.kosta.alien.model.LikeVO;
 import org.kosta.alien.model.MemberVO;
 
 public class OtherAnswerDetailController implements Controller {
@@ -27,16 +29,23 @@ public class OtherAnswerDetailController implements Controller {
 		
 		System.out.println(id);
 		if(mvo.getId().equals(id)==false) {
-		
-		
-			
+	
 			AnswerDAO.getInstance().updateHit(no);	
 			
 		}
 		AnswerVO avo=AnswerDAO.getInstance().getOtherDetailAnswer(ano);
+		LikeVO lvo=LikeDAO.getInstance().likeStatus(id, no);
+		if(lvo==null) {
+			request.setAttribute("likeStatus", false);
+		}else {
+			request.setAttribute("likeStatus", true);
+		}
+		
 		request.setAttribute("avo", avo);
 		request.setAttribute("url", "/board/other-answer-detail.jsp");
+		// likestatus 확인하고 상태확인해서 이미지 결정하는 값을 request에다가 할당 
 		
+	
 		return "/template/layout.jsp";
 	}
 
