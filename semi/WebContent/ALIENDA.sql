@@ -15,6 +15,7 @@ insert into member(id,name,password, email, stamp,status) values('kim','미남',
 select * from member;
 select * from JANG_ANSWER
 delete from member where id='2'
+select id, name, stamp, coupon from member where id='kim'
 --ANSWER--
 drop table answer
 select * from member -- 4 / 2 32

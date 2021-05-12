@@ -6,6 +6,7 @@ public class MemberVO {
 	private String phone;
 	private String password;
 	private String email;
+	private int stamp;
 	private int coupon;
 	// default : 0 1: 관리자
 	private int status;
@@ -15,23 +16,37 @@ public class MemberVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberVO(String id, String name, String phone, String password, String email, int coupon, int status) {
+	
+	
+	public MemberVO(String id, String name, String phone, String password, String email, int stamp, int coupon,
+			int status) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.phone = phone;
 		this.password = password;
 		this.email = email;
+		this.stamp = stamp;
 		this.coupon = coupon;
 		this.status = status;
 	}
-	
-	
+
+
+
 	public MemberVO(String id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
+
+	public MemberVO(String id, String name, int status) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.status = status;
+	}
+
+
 
 	public MemberVO(String id, String password, String name) {
 		super();
@@ -96,10 +111,25 @@ public class MemberVO {
 		this.status = status;
 	}
 
+
+
+	public int getStamp() {
+		return stamp;
+	}
+
+
+
+	public void setStamp(int stamp) {
+		this.stamp = stamp;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "MemberVO [id=" + id + ", name=" + name + ", phone=" + phone + ", password=" + password + ", email="
-				+ email + ", coupon=" + coupon + ", status=" + status + "]";
+				+ email + ", stamp=" + stamp + ", coupon=" + coupon + ", status=" + status + "]";
 	}
 
+	
 }
