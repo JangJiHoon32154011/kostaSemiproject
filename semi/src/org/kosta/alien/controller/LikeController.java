@@ -20,17 +20,19 @@ public class LikeController implements Controller {
 		String id=mvo.getId();
 		String answerNo=request.getParameter("answerNo");
 
-		int count=LikeDAO.getInstance().checkLikeCount(Integer.parseInt(answerNo));
+		
 		LikeVO lvo=LikeDAO.getInstance().likeStatus(id, answerNo);
 		System.out.println("check like: "+ lvo);
 		if(lvo==null) {
 			LikeDAO.getInstance().likeInsert(id, Integer.parseInt(answerNo));
 			LikeDAO.getInstance().addLike(id, answerNo);
+			int count=LikeDAO.getInstance().checkLikeCount(Integer.parseInt(answerNo));
 			request.setAttribute("responsebody", count);
 			
 		}else {
 			LikeDAO.getInstance().subLike(id, answerNo);
 			LikeDAO.getInstance().likeDelete(id, Integer.parseInt(answerNo));
+			int count=LikeDAO.getInstance().checkLikeCount(Integer.parseInt(answerNo));
 			request.setAttribute("responsebody", count);
 			
 		}

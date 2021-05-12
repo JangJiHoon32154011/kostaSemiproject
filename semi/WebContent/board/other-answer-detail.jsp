@@ -3,12 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <script type="text/javascript">
   let xhr;
-  let like;
-function LikeAjax(likeFlag){
-	like=likeFlag;
+  let likeFlag;
+function likeAjax(flag){
+	likeFlag=flag;
 	//let mid=document.getElementById("questionNo").value;
 	//alert("start ajax");
-	xhr=new XMLHttpRequest(); //Ajax 통신을 위한 자바스크립트 객체
+	xhr=new XMLHttpRequest(); //Ajax 통신을 위한 자바스크립트 객체	
 	//alert(xhr);
 	//XMLHttpRequest의 속성에 callback 함수를 바인딩
 	//readystate가 변화될 때 callback 함수가 실행
@@ -16,17 +16,12 @@ function LikeAjax(likeFlag){
 	xhr.onreadystatechange=callback;
 	//서버로 요청
 	let test=xhr.open("POST","LikeController.do");
-	
+	//let test=xhr.open("GET","LikeController.do?answerNo=${requestScope.avo.answerNo}");
 	//console.log("1 ",xhr);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.send("answerNo=${requestScope.avo.answerNo}");//post 방식일때 form data 명시
-	if(like){
-		document.getElementById("likeView").innerHTML="<img src='${pageContext.request.contextPath}/img/heart.png' width='50' height='50' onclick='likeAjax(false)'>";
-		//alert("heart 이미지");
-	}else{
-		document.getElementById("likeView").innerHTML="<img src='${pageContext.request.contextPath}/img/like.png' width='50' height='50' onclick='likeAjax(true)'>";
-		//alert("like 이미지");
-	}
+	//xhr.send(null);
+	
 	
 }
 
@@ -39,12 +34,22 @@ function callback(){
 	//readyState가 4 : 서버의 응답 정보를 받은 상태
 	//status 가 200 : 정상 수행
 	if(xhr.readyState==4&&xhr.status==200){
+		//alert(likeFlag);
 		//alert(xhr.responseText);
 		//xhr.responseText : 서버의 응답데이터를 저장하는 변수
 		
-		document.getElementById("likeView").innerHTML=xhr.responseText;
+		//document.getElementById("likeView").innerHTML=xhr.responseText;
 		//alert(like+"이미지변경하면 됨");
-		
+		//alert(likeFlag);
+		if(likeFlag){
+		document.getElementById("likeView").innerHTML="<img src='${pageContext.request.contextPath}/img/heart.png' width='50' height='50' onclick='likeAjax(false)'>";
+		//alert("heart 이미지");
+		}else{
+		document.getElementById("likeView").innerHTML="<img src='${pageContext.request.contextPath}/img/like.png' width='50' height='50' onclick='likeAjax(true)'>";
+		//alert("like 이미지");
+		}
+		//alert(xhr.responseText);
+		document.getElementById("likeCount").innerHTML=xhr.responseText;
 	}
 }
 </script>
@@ -69,22 +74,15 @@ function callback(){
 		</tr>		
 		
 	</table>
-		<button type="button" class="btn btn-default" id="like" onclick="LikeAjax(true)">좋아요 </button>
 		
+		<span id="likeView" >
 		<c:choose>
-		<c:when test="${requestScope.likeStatus}">
-		
-		 
-		 <span id="likeView">
-		 <img src="${pageContext.request.contextPath}/img/heart.png" width='50' height='50' onclick="likeAjax(false)">${requestScope.avo.likeCount }
-		 </span>
-
+		<c:when test="${requestScope.likeStatus}">		 
+		 <img src="${pageContext.request.contextPath}/img/heart.png" width='50' height='50' onclick="likeAjax(false)">
 		</c:when>
 		<c:otherwise>
-		
-		<span id="likeView">
-		<img src="${pageContext.request.contextPath}/img/like.png" width='50' height='50' onclick="likeAjax(true)">${requestScope.avo.likeCount }
-		</span>
+		<img src="${pageContext.request.contextPath}/img/like.png" width='50' height='50' onclick="likeAjax(true)"> 
 		</c:otherwise>
 		</c:choose> 
-
+		</span>
+		<span id="likeCount">${requestScope.avo.likeCount}</span>
