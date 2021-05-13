@@ -8,6 +8,8 @@ public class AnswerVO {
 	private String answerDate;
 	private int hits;	
 	private int likeCount;
+	private String picture;
+	
 	public AnswerVO() {
 		super();
 		// TODO Auto-generated constructor stub
