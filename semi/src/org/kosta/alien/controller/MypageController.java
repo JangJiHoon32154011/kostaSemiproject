@@ -37,6 +37,5 @@ public class MypageController implements Controller {
 		request.setAttribute("url", "/board/mypage.jsp");
 		return "/template/layout.jsp";
 	}
-
 }
->>>>>>> branch 'main' of https://github.com/JangJiHoon32154011/kostaSemiproject.git
+
