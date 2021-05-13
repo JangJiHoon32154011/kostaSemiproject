@@ -6,12 +6,12 @@
 <table class="table table-hover">
 		<tr>
 		<td>
-		${requestScope.qvo.title }
+			${requestScope.qvo.title}
 		</td>
 		</tr>
 		<tr>
 		<td>
-			${requestScope.qvo.contents }
+			${requestScope.qvo.contents}
 		</td>
 		</tr>
 </table>

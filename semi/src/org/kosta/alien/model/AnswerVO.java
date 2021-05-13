@@ -99,7 +99,7 @@ public class AnswerVO {
 	}
 	@Override
 	public String toString() {
-		return "JAnswerVO [id=" + id + ", questionNo=" + questionNo + ", answerNo=" + answerNo + ", answerContent="
+		return "AnswerVO [id=" + id + ", questionNo=" + questionNo + ", answerNo=" + answerNo + ", answerContent="
 				+ answerContent + ", answerDate=" + answerDate + ", hits=" + hits + ", likeCount=" + likeCount + "]";
 	} 
 	

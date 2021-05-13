@@ -2,54 +2,53 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<hr>
-<script type="text/javascript">
-	function logout() {
-		var f = confirm("로그아웃하시겠습니까?");
-		if (f)
-			location.href = "${pageContext.request.contextPath}/LogoutController.do";
-	}
-	
-</script>
+<table class="table table-hover">
+	<thead>
+		<tr>
 
-<c:choose>
-	<c:when test="${sessionScope.mvo==null}">
-		<h3>Welcome KOSTA 215기 면접시스템</h3>
-		<form method="post"
-			action="${pageContext.request.contextPath}/LoginController.do">
-			<div class="form-group">
-				<label for="id">아이디</label> <input type="text" class="form-control"
-					name="id" placeholder="아이디" size="12">
-			</div>
-			<div class="form-group">
-				<label for="id">비밀번호</label> <input type="password"
-					class="form-control" name="password" placeholder="비밀번호" size="12">
+			<th>번호</th>
+			<th class="title">제목</th>
 
-			</div>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach var="qvo" items="${requestScope.list}">
+			<tr>
+				<td>${qvo.questionNo }</td>
+				<td><c:choose>
+						<c:when test="${sessionScope.mvo!=null}">
+							<a
+								href="${pageContext.request.contextPath}/PostDetailController.do?questionNo=${qvo.questionNo }">
+								${qvo.title }</a>
+						</c:when>
+						<c:otherwise>
+				${qvo.title}
+				</c:otherwise>
+					</c:choose></td>
+			</tr>
+		</c:forEach>
+</table>
 
-			<button type="submit" class="btn btn-default">로그인</button>
-		</form>
-		<br>
-		<form method="post"
-			action="${pageContext.request.contextPath}/SignUpFormController.do">
-			<button type="submit" class="btn btn-default">회원가입</button>
-		</form>
-		<br>
-		<form method="post" action = "${pageContext.request.contextPath}/FindPasswordFormController.do">
-			<button type="submit" class="btn btn-default">비밀번호 찾기</button>
-
-		</form>
-	</c:when>
-	<c:otherwise>
-		<%-- <a href="${pageContext.request.contextPath}/ListController.do">홈</a>&nbsp;&nbsp;--%>
-		<%-- <a href="${pageContext.request.contextPath}/WritePostFormController.do">글쓰기</a>&nbsp;&nbsp;--%>
-		<%-- <a href="${pageContext.request.contextPath}/MypageController.do">마이페이지</a>&nbsp;&nbsp;--%>
-		<h3>${sessionScope.mvo.name}님안녕하세요</h3>
-
-		<button type="submit" class="btn btn-default" onclick="logout()">로그아웃</button>
-	</c:otherwise>
-
-</c:choose>
-<div style="text-align: center;">
-	<img src="${pageContext.request.contextPath}/img/hoonjj.jpg">
+<%-- 페이징 처리 --%>
+<%-- ${requestScope.pagingBean} --%>
+<c:set var="pb" value="${requestScope.pagingBean}"></c:set>
+<div class="pagingArea" style="text-align: center">
+	<ul class="pagination">
+	<c:if test="${pb.previousPageGroup}">
+	<li><a href="ListController.do?category=${param.category}&pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
+	</c:if>
+		<c:forEach var="page" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
+		<c:choose>
+			<c:when test="${pb.nowPage==page}">
+			<li class="active"><a href="ListController.do?category=${param.category}&pageNo=${page}">${page}</a></li>
+			</c:when>
+			<c:otherwise>
+			<li><a href="ListController.do?category=${param.category}&pageNo=${page}">${page}</a></li>
+			</c:otherwise>
+		</c:choose>		
+		</c:forEach>
+	<c:if test="${pb.nextPageGroup}">
+	<li><a href="ListController.do?category=${param.category}&pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
+	</c:if>	
+	</ul>
 </div>
