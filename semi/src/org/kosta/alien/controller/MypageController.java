@@ -35,7 +35,7 @@ public class MypageController implements Controller {
 
 		request.setAttribute("list", list);
 		request.setAttribute("url", "/board/mypage.jsp");
-		return "/template/layout.jsp";
+		return "/template/layout_mypage.jsp";
 	}
 }
 
