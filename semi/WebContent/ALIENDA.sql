@@ -108,8 +108,9 @@ FROM question
 WHERE category = 'se'
 ) 
 WHERE  rnum BETWEEN 1 AND 10;
-
-
+select * from answer
+select * from answer_like
+select id,answer_no from answer_like where id='3' and answer_no=9 
 drop table answer_like
 create table answer_like(
 	id varchar2(100), 
@@ -139,7 +140,7 @@ from answer a, member m, question q
 where a.id=m.id and q.question_no=2 and a.question_no=2 
 
 select * from ANSWER_LIKE
-select answ
+
 insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'java란?','뭘까요~?','se');
 insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'jdbc란?','뭘까요~?','jdbc');
 insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'web 이란?','뭘까요~?','web');
