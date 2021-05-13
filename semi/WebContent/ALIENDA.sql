@@ -60,7 +60,7 @@ where answer_no=1
 update member set stamp=3,coupon=2 where id='1'
 -- 이게말이야 스템프 / 쿠폰이 있어. 한잔은 스탬프 1잔 무료는 쿠폰
 -- 회원이 마이페이지 : side navBar 를 내가푼 문제 / 쿠폰함이 있을 텐데 스템프 : 쿠폰 몇개 
-select like_count from answer where answer_no=5
+select like_count from answer where answer_no=9
 select coupon from member where id='dong'
 --QUESTION--
 drop table question;
