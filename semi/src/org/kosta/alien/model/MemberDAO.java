@@ -100,7 +100,7 @@ public class MemberDAO {
 		return count;
 	}
 	
-	public void updateMember(String id, String password, String name, String email) throws SQLException {
+	public void updateMember(String id, String name, String password, String email) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
