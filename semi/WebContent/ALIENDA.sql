@@ -116,7 +116,7 @@ insert into ANSWER_LIKE(id,answer_no) values('4'44);
 	update answer_like set ans
 	
 	u
-	select * from answer
+	select * from answer_like
 	update answer set like_count=like_count+1 where answer_no=5
 	
 	update answer set hits=hits+1 where answer_no=5
@@ -124,6 +124,7 @@ insert into ANSWER_LIKE(id,answer_no) values('4'44);
 	
 	
 -- test
+select question_no, title from question order by question_no desc
 create table t1(
 	id varchar2(100) not null,
 	name varchar2(100) not null,
