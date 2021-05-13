@@ -19,8 +19,9 @@ public class PostDetailController implements Controller {
 		// question NO 받기
 		String questionNo=request.getParameter("questionNo");
 		// vo NO에 따른 문제 받아오기
-		QuestionVO vo=QuestionBoardDAO.getInstance().getPostingByNo(questionNo);
-		request.setAttribute("qvo", vo);
+		QuestionVO qvo=QuestionBoardDAO.getInstance().getPostingByNo(questionNo);
+		request.setAttribute("qvo", qvo);
+		System.out.println(qvo);
 		request.setAttribute("url", "/board/post-detail.jsp");
 		return "/template/layout.jsp";
 	}

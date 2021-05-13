@@ -190,6 +190,7 @@ public class QuestionBoardDAO {
 		return list;
 	}
 
+
 	/***
 	 * 번호에 따른 문제 받아오기
 	 * 

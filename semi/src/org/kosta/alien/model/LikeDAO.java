@@ -7,6 +7,8 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+
 public class LikeDAO {
 	private static LikeDAO dao=new LikeDAO();
 	private DataSource dataSource;
@@ -86,10 +88,10 @@ public class LikeDAO {
 		PreparedStatement pstmt=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="update answer set like_count=like_count+1 where answer_no=? and id=?";
+			String sql="update answer set like_count=like_count+1 where answer_no=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, answerNo);
-			pstmt.setString(2, id);
+			
 			pstmt.executeUpdate();
 		}finally {
 			closeAll(pstmt, con);
@@ -101,10 +103,10 @@ public class LikeDAO {
 		PreparedStatement pstmt=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="update answer set like_count=like_count-1 where answer_no=? and id=?";
+			String sql="update answer set like_count=like_count-1 where answer_no=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, answerNo);
-			pstmt.setString(2, id);
+			//pstmt.setString(2, id);
 			pstmt.executeUpdate();
 		}finally {
 			closeAll(pstmt, con);
@@ -129,4 +131,5 @@ public class LikeDAO {
 		}
 		return count;
 	}
+	
 }

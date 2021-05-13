@@ -24,7 +24,8 @@
 						<c:otherwise>
 				${qvo.title}
 				</c:otherwise>
-					</c:choose></td>
+					</c:choose>
+					</td>
 			</tr>
 		</c:forEach>
 		<tr>
@@ -35,9 +36,6 @@
 					추가하기</a></td>
 					</c:when>
 					</c:choose>
-		</tr>
-		<tr>
-		
 		</tr>
 	</tbody>
 </table>

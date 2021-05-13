@@ -8,6 +8,8 @@ public class AnswerVO {
 	private String answerDate;
 	private int hits;	
 	private int likeCount;
+	private String picture;
+	
 	public AnswerVO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -30,6 +32,7 @@ public class AnswerVO {
 		this.questionNo = questionNo;
 		this.answerContent = answerContent;
 	}
+	
 	
 	
 	public AnswerVO(String questionNo, String answerDate) {
@@ -98,7 +101,7 @@ public class AnswerVO {
 	}
 	@Override
 	public String toString() {
-		return "JAnswerVO [id=" + id + ", questionNo=" + questionNo + ", answerNo=" + answerNo + ", answerContent="
+		return "AnswerVO [id=" + id + ", questionNo=" + questionNo + ", answerNo=" + answerNo + ", answerContent="
 				+ answerContent + ", answerDate=" + answerDate + ", hits=" + hits + ", likeCount=" + likeCount + "]";
 	} 
 	

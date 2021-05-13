@@ -34,14 +34,16 @@ public class ViewAnswerController implements Controller {
 		} else {
 			pagingBean = new PagingBean(getTotalAnswerByQNo, Integer.parseInt(pageNo));
 		}
+
 		// Qno에 따른 답변 리스트 출력(
-//		QuestionVO qvo =new QuestionVO();
-//		qvo.setQuestionNo(request.getParameter("qno"));
-//		request.setAttribute("qvo", qvo);
+		QuestionVO qvo=QuestionBoardDAO.getInstance().getPostingByNo(qno);
+		request.setAttribute("qvo", qvo);
+		System.out.println(qvo);
+		
 		request.setAttribute("pagingBean", pagingBean);
 		ArrayList<AnswerVO> list = AnswerDAO.getInstance().getAllAnswerListByQNO(qno,pagingBean);
-		
 		request.setAttribute("list", list);
+		
 		request.setAttribute("url", "/mypage/answerview.jsp");		
 		return "/template/layout.jsp";
 	}

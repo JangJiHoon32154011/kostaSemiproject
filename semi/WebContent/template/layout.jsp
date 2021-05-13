@@ -27,7 +27,7 @@
     .sidenav {
       padding-top: 20px;
       background-color: #f1f1f1;
-      height: 100%;
+      height: 150%;
     }
     
     /* Set black background color, white text and some padding */
@@ -46,6 +46,9 @@
       .row.content { 
      
       height:auto;} 
+    }
+    h4{
+    	color : white;
     }
     <%--<c:import url="/template/header.jsp"></c:import>--%>
   </style>
