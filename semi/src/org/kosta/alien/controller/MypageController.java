@@ -23,7 +23,7 @@ public class MypageController implements Controller {
 		ArrayList<AnswerVO> list
 		=AnswerDAO.getInstance().getMyAnswerList(mvo.getId());
 		request.setAttribute("list", list);
-		request.setAttribute("url", "/board/mypage.jsp");		
+		request.setAttribute("url", "/board/myAnswer-detail.jsp");		
 		return "/template/layout_mypage.jsp";
 	}
 
