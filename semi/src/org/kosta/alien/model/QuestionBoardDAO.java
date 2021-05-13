@@ -70,6 +70,68 @@ public class QuestionBoardDAO {
 		}
 		return list;
 	}
+	/**
+	 * 총 문제수를 반환합니다.
+	 * 
+	 * @param category
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getTotalQuestionCount() throws SQLException {
+		int count = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT count(*) FROM question");
+			pstmt = con.prepareStatement(sql.toString());
+
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return count;
+	}
+	/***
+	 * 전체 문제를 조회한다.with paging
+	 * @return
+	 * @throws SQLException
+	 */
+	public ArrayList<QuestionVO> getPostingList(PagingBean pagingBean) throws SQLException {
+		ArrayList<QuestionVO> list = new ArrayList<QuestionVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT B.question_no, B.title " );
+			sql.append("FROM( ");
+			sql.append("SELECT row_number() over(ORDER BY question_no DESC) as rnum, ");
+			sql.append("question_no, title  ");
+			sql.append("from question  ");
+			sql.append("order by question_no desc ");
+			sql.append(") B ");
+			sql.append("WHERE rnum BETWEEN ? AND ? ");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setInt(1, pagingBean.getStartRowNumber());
+			pstmt.setInt(2, pagingBean.getEndRowNumber());
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(new QuestionVO(rs.getString(1), rs.getString(2)));
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
 
 	public ArrayList<QuestionVO> getSEList() throws SQLException {
 		ArrayList<QuestionVO> list = new ArrayList<QuestionVO>();
@@ -390,7 +452,6 @@ public class QuestionBoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
 			sql.append("select count(*) from question ");
@@ -407,5 +468,8 @@ public class QuestionBoardDAO {
 		}
 		return count;
 	}
+	
+	
+	
 
 }
