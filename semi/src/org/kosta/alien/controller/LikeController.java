@@ -26,6 +26,7 @@ public class LikeController implements Controller {
 		if(lvo==null) {
 			LikeDAO.getInstance().likeInsert(id, Integer.parseInt(answerNo));
 			LikeDAO.getInstance().addLike(id, answerNo);
+			
 			int count=LikeDAO.getInstance().checkLikeCount(Integer.parseInt(answerNo));
 			request.setAttribute("responsebody", count);
 			

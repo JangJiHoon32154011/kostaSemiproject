@@ -32,6 +32,7 @@ public class AnswerVO {
 	}
 	
 	
+	
 	public AnswerVO(String questionNo, String answerDate) {
 		super();
 		this.questionNo = questionNo;
