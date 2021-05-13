@@ -12,7 +12,8 @@ coupon number default 0,
 status number default 0 
 )
 insert into member(id,name,password, email, stamp,status) values('2','님','1','java@java.com',15,0);
-insert into member(id,name,password, email, stamp,status) values('kim','미남','00','hi@naver.com',22,1);
+insert into member(id,name,password, email, stamp,status) values('2','1','1','hi@naver.com',22,1);
+
 select * from member;
 select * from JANG_ANSWER
 delete from member where id='2'
@@ -34,6 +35,12 @@ create table answer(
 	constraint question_no_fk foreign key(question_no) references question(question_no),
 	constraint answer_unique unique(id,question_no)
 )
+delete from answer_like where id='1'
+
+delete from member where id='1'
+
+select * from answer_like
+delete from answer where answer_no=3
 -- test
 create table t1(
 	id varchar2(100) not null,
@@ -43,12 +50,14 @@ create table t1(
 insert into t1 values('java','아이유');
 insert into t1 values('java','어');
 create sequence answer_seq;
+
+drop sequence answer_seq;
 drop table answer
 update answer set hits=hits+1 where answer_no=1
 update answer set hits=hits+1 where answer_no=1
 select * from answer
 drop sequence answer_seq;
-
+create sequence answer_seq;
 select like_count from answer where answer_no=9
 
 update answer set hits=hits+1 where answer_no=1
@@ -72,7 +81,8 @@ create table question(
 	contents varchar2(100) not null,
 	category varchar2(100),
 	hits number default 0,
-	answercount number default 0
+	answercount number default 0,
+	picture varchar2(100)
 )
 select id, name from member;
 select distinct(category) from QUESTION
@@ -81,7 +91,8 @@ drop sequence question_seq;
 
 
 select * from question
-
+select id from answer where answer_no=1
+select * from ANSWER_LIKE
 --HINT--
 drop table hint;
 alter table answer drop constraint question_no_fk
@@ -126,7 +137,6 @@ create table answer_like(
 	insert into ANSWER_LIKE(id,answer_no) values('1',5)
 	update answer_like set ans
 	
-	u
 	select * from answer
 	update answer set like_count=like_count+1 where answer_no=5
 	

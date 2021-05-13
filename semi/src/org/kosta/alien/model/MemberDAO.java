@@ -211,16 +211,18 @@ public class MemberDAO {
 		PreparedStatement pstmt=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="delete from member where id=?";
+			String sql="delete from answer_like where id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.executeUpdate();
+			pstmt.close();
+			pstmt=con.prepareStatement("delete from answer");
 		}finally {
 			closeAll(pstmt, con);
 		}
 	}
 	//(String id, String name, String phone, String password, String email, int stamp, int coupon,
-	
+	// 
 	public ArrayList<MemberVO> getMemberIdList() throws SQLException {
 		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
 		Connection con = null;
