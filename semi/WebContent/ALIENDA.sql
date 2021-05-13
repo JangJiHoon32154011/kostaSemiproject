@@ -1,8 +1,8 @@
 
-drop table member;
-drop table question;
 drop table answer;
+drop table member;
 drop table hint;
+drop table question;
 drop table answer_like;
 
 
@@ -39,8 +39,8 @@ create table question(
 	hits number default 0,
 	answercount number default 0
 )
-create sequence question_seq;
 drop sequence question_seq;
+create sequence question_seq;
 
 insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'JAVA란 무엇인가요?','디테일하게 서술하시오','se');
 insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'객체지향의 주요 개념 중 Encapsulation의 특징은?','디테일하게 서술하시오','se');
@@ -68,8 +68,8 @@ create table answer(
 	constraint question_no_fk foreign key(question_no) references question(question_no),
 	constraint answer_unique unique(id,question_no)
 )
-create sequence answer_seq;
 drop sequence answer_seq;
+create sequence answer_seq;
 
 select * from answer;
 
@@ -165,6 +165,17 @@ WHERE category = 'se'
 ) 
 WHERE  rnum BETWEEN 1 AND 10;
 
+select id, name from member where status = 0
+
+SELECT B.id,B.name
+FROM ( 
+SELECT row_number() over(ORDER BY id DESC) as rnum, 
+id, name
+FROM member 
+WHERE status = 0
+) B
+WHERE  rnum BETWEEN 1 AND 10;
+
 
 --flag 가 있으면 if(flag==0){ 
 delete from ANSWER_LIKE where id='1' and answer_no=5
@@ -185,5 +196,6 @@ select * from member;
 SELECT * FROM member WHERE id='did' AND name='양' AND EMAIL='did';
 
 
-
+select id, question_no, answer_no, answer_content, answer_date,hits,like_count 
+from answer where answer_no=366;
 

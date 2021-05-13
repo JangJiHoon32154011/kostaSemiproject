@@ -25,7 +25,7 @@ public class WriteAnswerController implements Controller {
 		MemberDAO.getInstance().updateStamp(mvo.getId(), 1);
 		int stampNo=MemberDAO.getInstance().checkStamp(mvo.getId());
 		MemberDAO.getInstance().updateCoupon(mvo.getId(),stampNo);
-		request.setAttribute("url", "/board/list.jsp");		
+		request.setAttribute("url", "/board/mypage.jsp");		
 		return "/template/layout.jsp";
 	}
 }
