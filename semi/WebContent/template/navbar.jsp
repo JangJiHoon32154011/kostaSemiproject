@@ -17,7 +17,7 @@
         <span class="icon-bar"></span>                        
       </button>
      
-      <a class="navbar-brand" href="${pageContext.request.contextPath}/HomeController.do">ALIEN</a>
+      <a class="navbar-brand" href="${pageContext.request.contextPath}/HomeController.do">ALIENDA</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
