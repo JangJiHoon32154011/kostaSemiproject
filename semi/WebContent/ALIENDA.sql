@@ -393,7 +393,7 @@ SELECT B.question_no, B.id, B.answer_date, B.answer_content,B.answer_no
 			FROM answer  
 			WHERE question_no=366
 			)  B 
-			WHERE  rnum BETWEEN 1 AND 10;
+			WHERE  rnum BETWEEN 1 AND 5;
 
 			sql.append("select a.question_no, a.id, a.answer_date, a.answer_content,a.answer_no ");
 			sql.append("from answer a, member m, question q ");

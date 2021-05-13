@@ -23,7 +23,7 @@ public class ViewAnswerController implements Controller {
 			return "redirect:index.jsp";
 		}
 		MemberVO mvo=(MemberVO)session.getAttribute("mvo");
-		int qno=Integer.parseInt(request.getParameter("qno"));
+		String qno=request.getParameter("qno");
 		// QNo에 따른 총 답변 수
 		int getTotalAnswerByQNo=AnswerDAO.getInstance().getTotalAnswerByQNo(qno);
 		String pageNo = request.getParameter("pageNo");
@@ -38,8 +38,8 @@ public class ViewAnswerController implements Controller {
 //		QuestionVO qvo =new QuestionVO();
 //		qvo.setQuestionNo(request.getParameter("qno"));
 //		request.setAttribute("qvo", qvo);
-		ArrayList<AnswerVO> list = AnswerDAO.getInstance().getAllAnswerListByQNO(getTotalAnswerByQNo, pagingBean);
 		request.setAttribute("pagingBean", pagingBean);
+		ArrayList<AnswerVO> list = AnswerDAO.getInstance().getAllAnswerListByQNO(qno,pagingBean);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("url", "/mypage/answerview.jsp");		

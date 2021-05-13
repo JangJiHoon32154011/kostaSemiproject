@@ -115,7 +115,7 @@ public class AnswerDAO {
 	 * @return
 	 * @throws SQLException
 	 */
-	public int getTotalAnswerByQNo(int qno) throws SQLException {
+	public int getTotalAnswerByQNo(String qno) throws SQLException {
 		int count = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -126,7 +126,7 @@ public class AnswerDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT count(*) FROM answer WHERE question_no = ? ");
 			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setInt(1, qno);
+			pstmt.setInt(1, Integer.parseInt(qno));
 
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -144,7 +144,7 @@ public class AnswerDAO {
 	 * @return
 	 * @throws SQLException
 	 */
-	public ArrayList<AnswerVO> getAllAnswerListByQNO(int qno, PagingBean pagingBean) throws SQLException {
+	public ArrayList<AnswerVO> getAllAnswerListByQNO(String qno, PagingBean pagingBean) throws SQLException {
 		ArrayList<AnswerVO> list = new ArrayList<AnswerVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -162,7 +162,7 @@ public class AnswerDAO {
 			sql.append("WHERE  rnum BETWEEN ? AND ? ");
 
 			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setInt(1, qno);
+			pstmt.setInt(1, Integer.parseInt(qno));
 			pstmt.setInt(2, pagingBean.getStartRowNumber());
 			pstmt.setInt(3, pagingBean.getEndRowNumber());
 			rs = pstmt.executeQuery();
