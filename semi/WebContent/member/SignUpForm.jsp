@@ -30,16 +30,15 @@
 			alert("이메일을 입력하세요!");
 			return false;
 		}
-
-		if(form.flag.value != form.id.value) {
-			alert("아이디 중복확인 하세요!");
-			return false;
-		}
 	}
 
 	//id 중복확인
 	function idCheck() {
 		window.open("member/idCheckForm.jsp","idwindow", "width=400, height=350");
+	}
+	
+	function result() {
+		confirm("회원가입이 완료되었습니다!");
 	}
 	
 </script>
@@ -49,9 +48,8 @@
 		onsubmit="return checkValue()">
 		<table class="table">
 			<tr>
-				<td><input type="text" name="id" placeholder="아이디" size=15>
+				<td><input type="text" name="id" placeholder="아이디" size="15" readonly>
 					<input type="button" value="중복확인" onclick="idCheck()">
-					<input type="hidden" name="flag" value="">
 					</td>
 			</tr>
 			<tr>
@@ -74,7 +72,6 @@
 		<br><button type="submit" class="btn btn-default">가입하기</button>
 	</form>
 </body>
-
 
 
 

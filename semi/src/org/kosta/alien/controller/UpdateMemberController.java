@@ -23,7 +23,7 @@ public class UpdateMemberController implements Controller {
 		String email = request.getParameter("email");
 		MemberDAO.getInstance().updateMember(id,name,password,email);
 		request.setAttribute("url", "/board/mypage.jsp");
-		return "redirect:index.jsp";
+		return "redirect:member/updatesuccess.jsp";
 	}
 
 }
