@@ -127,7 +127,7 @@ public class QuestionBoardDAO {
 		}
 		return list;
 	}
-	// 이거 question으로 바꾸는게 어때???
+
 	/***
 	 * 번호에 따른 문제 받아오기
 	 * @param questionNo
@@ -236,7 +236,7 @@ public class QuestionBoardDAO {
 	 * @return
 	 * @throws SQLException
 	 */
-	public int getTotalPostCount(String category) throws SQLException {
+	public int getTotalQuestionCountByCategory(String category) throws SQLException {
 		int count = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -258,9 +258,11 @@ public class QuestionBoardDAO {
 		}
 		return count;
 	}
+	
 
 	/**
-	 * 페이지 번호에 해당하는 게시물 목록 리스트를 반환하는 메서드 Paging 적용된 LIST SQL ( row_number() ,
+	 * 페이지 번호에 해당하는 게시물 목록 리스트를 반환합니다.
+	 * Paging 적용된 LIST SQL ( row_number() ,
 	 * subquery , inlineview , join ) SELECT
 	 * B.no,B.title,B.hits,B.time_posted,M.name FROM ( SELECT row_number()
 	 * over(ORDER BY NO DESC) as rnum,

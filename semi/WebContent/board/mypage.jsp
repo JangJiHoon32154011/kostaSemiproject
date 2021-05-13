@@ -32,20 +32,20 @@
 <div class="pagingArea" style="text-align: center">
 	<ul class="pagination">
 	<c:if test="${pb.previousPageGroup}">
-	<li><a href="ListController.do?category=${param.category}&pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
+	<li><a href="MypageController.do?id=${param.id}&pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
 	</c:if>
 		<c:forEach var="page" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
 		<c:choose>
 			<c:when test="${pb.nowPage==page}">
-			<li class="active"><a href="ListController.do?category=${param.category}&pageNo=${page}">${page}</a></li>
+			<li class="active"><a href="MypageController.do?id=${param.id}&pageNo=${page}">${page}</a></li>
 			</c:when>
 			<c:otherwise>
-			<li><a href="ListController.do?category=${param.category}&pageNo=${page}">${page}</a></li>
+			<li><a href="MypageController.do?category=${param.category}&pageNo=${page}">${page}</a></li>
 			</c:otherwise>
 		</c:choose>		
 		</c:forEach>
 	<c:if test="${pb.nextPageGroup}">
-	<li><a href="ListController.do?category=${param.category}&pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
+	<li><a href="MypageController.do?id=${param.id}&pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
 	</c:if>	
 	</ul>
 </div>
