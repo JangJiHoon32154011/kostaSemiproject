@@ -60,7 +60,7 @@ where answer_no=1
 update member set stamp=3,coupon=2 where id='1'
 -- 이게말이야 스템프 / 쿠폰이 있어. 한잔은 스탬프 1잔 무료는 쿠폰
 -- 회원이 마이페이지 : side navBar 를 내가푼 문제 / 쿠폰함이 있을 텐데 스템프 : 쿠폰 몇개 
-select like_count from answer where answer_no=5
+select like_count from answer where answer_no=9
 select coupon from member where id='dong'
 --QUESTION--
 drop table question;
@@ -108,8 +108,9 @@ FROM question
 WHERE category = 'se'
 ) 
 WHERE  rnum BETWEEN 1 AND 10;
-
-
+select * from answer
+select * from answer_like
+select id,answer_no from answer_like where id='3' and answer_no=9 
 drop table answer_like
 create table answer_like(
 	id varchar2(100), 
@@ -139,7 +140,7 @@ from answer a, member m, question q
 where a.id=m.id and q.question_no=2 and a.question_no=2 
 
 select * from ANSWER_LIKE
-select answ
+
 insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'java란?','뭘까요~?','se');
 insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'jdbc란?','뭘까요~?','jdbc');
 insert into QUESTION(question_no,title,contents,category) values(question_seq.nextval,'web 이란?','뭘까요~?','web');
