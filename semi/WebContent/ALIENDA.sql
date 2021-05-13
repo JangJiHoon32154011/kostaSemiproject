@@ -21,8 +21,7 @@ select id, name, stamp, coupon from member where id='kim'
 drop table answer
 select * from member -- 4 / 2 32
 update member set stamp=stamp-10 where id='2';
-
-
+select * from answer
 create table answer(
 	id varchar2(100) not null,
 	question_no number not null,
@@ -50,6 +49,10 @@ update answer set hits=hits+1 where answer_no=1
 select * from answer
 drop sequence answer_seq;
 
+select like_count from answer where answer_no=9
+
+update answer set hits=hits+1 where answer_no=1
+select * from member
 select id, answer_content, answer_date, hits, like_count
 from answer
 where answer_no=1
