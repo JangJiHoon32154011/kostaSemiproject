@@ -18,7 +18,7 @@ public class ListController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String category = request.getParameter("category");
 		// category 별 총 문제 수
-		int totalQuestionCount = QuestionBoardDAO.getInstance().getTotalPostCount(category);
+		int totalQuestionCount = QuestionBoardDAO.getInstance().getTotalQuestionCountByCategory(category);
 		String pageNo = request.getParameter("pageNo");
 		PagingBean pagingBean = null;
 		if (pageNo == null) {

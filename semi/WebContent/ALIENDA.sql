@@ -385,5 +385,17 @@ select password from member;
 select * from member;
 SELECT * FROM member WHERE id='did' AND name='양' AND EMAIL='did';
 
+select * from ANSWER;
+-- answer paging test
+SELECT B.question_no, B.id, B.answer_date, B.answer_content,B.answer_no
+			FROM (  
+			SELECT row_number() over(ORDER BY question_no DESC) as rnum,  
+			question_no, id, answer_date, answer_content, answer_no 
+			FROM answer  
+			WHERE question_no=366
+			)  B 
+			WHERE  rnum BETWEEN 1 AND 5;
 
-
+			sql.append("select a.question_no, a.id, a.answer_date, a.answer_content,a.answer_no ");
+			sql.append("from answer a, member m, question q ");
+			sql.append("where a.id=m.id and q.question_no=? and a.question_no=? ");
