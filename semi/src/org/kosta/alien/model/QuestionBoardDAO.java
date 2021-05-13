@@ -127,7 +127,7 @@ public class QuestionBoardDAO {
 		}
 		return list;
 	}
-	// 이거 question으로 바꾸는게 어때???
+
 	/***
 	 * 번호에 따른 문제 받아오기
 	 * @param questionNo
@@ -236,7 +236,7 @@ public class QuestionBoardDAO {
 	 * @return
 	 * @throws SQLException
 	 */
-	public int getTotalPostCount(String category) throws SQLException {
+	public int getTotalQuestionCountByCategory(String category) throws SQLException {
 		int count = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -258,6 +258,8 @@ public class QuestionBoardDAO {
 		}
 		return count;
 	}
+	
+
 
 	public ArrayList<QuestionVO> getQuestionList(String category, PagingBean pagingBean) throws SQLException {
 		ArrayList<QuestionVO> list = new ArrayList<QuestionVO>();
