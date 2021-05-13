@@ -398,3 +398,17 @@ SELECT B.question_no, B.id, B.answer_date, B.answer_content,B.answer_no
 			sql.append("select a.question_no, a.id, a.answer_date, a.answer_content,a.answer_no ");
 			sql.append("from answer a, member m, question q ");
 			sql.append("where a.id=m.id and q.question_no=? and a.question_no=? ");
+			
+-- search paging			
+SELECT B.question_no, B.title
+FROM(
+	SELECT row_number() over(ORDER BY question_no DESC) as rnum, 
+	question_no,title from question
+	WHERE title like '%' || 'j' || '%'
+	) B
+WHERE  rnum BETWEEN 1 AND 5;
+
+select count(*) from question
+where title like '%' || 'j' || '%';
+			sql.append("select question_no,title from question ");
+				sql.append("where title like '%' || ? || '%'");
