@@ -53,7 +53,7 @@
 						<option>daum.net</option>
 						<option>gmail.com</option>
 						<option>nate.com</option>
-				</select> <input type="text" name="mail"></td>
+				</select></td>
 			</tr>
 		</table>
 		<br> <button type="submit" class="btn btn-default" onclick="result()">수정하기</button>

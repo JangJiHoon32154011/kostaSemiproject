@@ -15,9 +15,15 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="${pageContext.request.contextPath}/HomeController.do">Home</a></li>
         <li><a href="${pageContext.request.contextPath}/MypageController.do">마이페이지</a></li>
-        
       </ul>
-      
+      <form class="navbar-form navbar-right" action="${pageContext.request.contextPath}/SearchController.do">
+			<div class = "container-fluid">
+			<div class="form-group">
+			<input type="text" name="word" class="form-control" placeholder="문제를 검색하세요.">
+			</div>
+		<button type="submit" class="btn btn-default">검색</button>
+		</form>
+	</div>
     </div>
   </div>
 </nav>

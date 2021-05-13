@@ -259,18 +259,6 @@ public class QuestionBoardDAO {
 		return count;
 	}
 
-	/**
-	 * 페이지 번호에 해당하는 게시물 목록 리스트를 반환하는 메서드 Paging 적용된 LIST SQL ( row_number() ,
-	 * subquery , inlineview , join ) SELECT
-	 * B.no,B.title,B.hits,B.time_posted,M.name FROM ( SELECT row_number()
-	 * over(ORDER BY NO DESC) as rnum,
-	 * no,title,hits,to_char(time_posted,'YYYY.MM.DD') as time_posted,id FROM board
-	 * ) B, board_member M WHERE B.id=M.id AND rnum BETWEEN 1 AND 5
-	 * 
-	 * @param pageNo
-	 * @return
-	 * @throws SQLException
-	 */
 	public ArrayList<QuestionVO> getQuestionList(String category, PagingBean pagingBean) throws SQLException {
 		ArrayList<QuestionVO> list = new ArrayList<QuestionVO>();
 		Connection con = null;
@@ -329,4 +317,28 @@ public class QuestionBoardDAO {
 			   return hvo;
 			
 		}
+	
+		//문제 검색
+		public ArrayList<QuestionVO> searchQuestion(String word) throws SQLException {
+			ArrayList<QuestionVO> list=new ArrayList<QuestionVO>();
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs=null;
+			try { 
+				con = dataSource.getConnection();
+				StringBuilder sql = new StringBuilder();
+				sql.append("select question_no,title from question ");
+				sql.append("where title like '%' || ? || '%'");
+				pstmt = con.prepareStatement(sql.toString());
+				pstmt.setString(1, word);
+				rs =pstmt.executeQuery();
+				while(rs.next()) {
+					list.add(new QuestionVO(rs.getString(1),rs.getString(2)));
+				}
+			} finally {
+				closeAll(rs,pstmt, con);
+			}
+			return list;
+		}	
+		
 }
