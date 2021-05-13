@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.kosta.alien.model.AnswerDAO;
 import org.kosta.alien.model.LikeDAO;
 import org.kosta.alien.model.LikeVO;
 import org.kosta.alien.model.MemberVO;
@@ -16,9 +17,10 @@ public class LikeController implements Controller {
 		if(session==null||session.getAttribute("mvo")==null){
 			return "redirect:index.jsp";
 		}
-		MemberVO mvo=(MemberVO)session.getAttribute("mvo");
-		String id=mvo.getId();
+		
 		String answerNo=request.getParameter("answerNo");
+		int ano=Integer.parseInt(answerNo);
+		String id = AnswerDAO.getInstance().findIdByAnswerNo(ano);
 
 		
 		LikeVO lvo=LikeDAO.getInstance().likeStatus(id, answerNo);

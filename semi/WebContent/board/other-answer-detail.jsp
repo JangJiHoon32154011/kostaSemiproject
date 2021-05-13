@@ -20,7 +20,7 @@ function likeAjax(flag){
 	//console.log("1 ",xhr);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.send("answerNo=${requestScope.avo.answerNo}");//post 방식일때 form data 명시
-	//xhr.send(null);
+	//x`end(null);
 	
 	
 }
@@ -74,7 +74,7 @@ function callback(){
 		</tr>		
 		
 	</table>
-		
+		${requestScope.likeStatus}
 		<span id="likeView" >
 		<c:choose>
 		<c:when test="${requestScope.likeStatus}">		 

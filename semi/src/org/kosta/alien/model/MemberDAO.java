@@ -222,7 +222,7 @@ public class MemberDAO {
 		}
 	}
 	//(String id, String name, String phone, String password, String email, int stamp, int coupon,
-	
+	// 
 	public ArrayList<MemberVO> getMemberIdList() throws SQLException {
 		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
 		Connection con = null;

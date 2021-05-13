@@ -20,6 +20,7 @@ public class OtherAnswerDetailController implements Controller {
 		}
 		
 		String id=request.getParameter("id");
+		System.out.println("---"+id);
 		
 		int ano=Integer.parseInt(request.getParameter("ano"));
 		
@@ -35,9 +36,12 @@ public class OtherAnswerDetailController implements Controller {
 		}
 		AnswerVO avo=AnswerDAO.getInstance().getOtherDetailAnswer(ano);
 		LikeVO lvo=LikeDAO.getInstance().likeStatus(id, no);
+		System.out.println(lvo);
 		if(lvo==null) {
+			System.out.println("false");
 			request.setAttribute("likeStatus", false);
 		}else {
+			System.out.println("true");
 			request.setAttribute("likeStatus", true);
 		}
 		
