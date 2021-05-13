@@ -1,5 +1,7 @@
 package org.kosta.alien.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,7 +25,11 @@ public class AddQuestionController implements Controller {
 		
 		QuestionVO vo=new QuestionVO(title, mvo.getId(), contents, category);
 		QuestionBoardDAO.getInstance().AddQuestion(vo);
-		request.setAttribute("url", "/board/list.jsp");		
+		
+		ArrayList<QuestionVO> list = QuestionBoardDAO.getInstance().getPostingList();
+		request.setAttribute("list", list);
+		
+		request.setAttribute("url", "/board/welcome.jsp");		
 		return "/template/layout.jsp";
 	}
 

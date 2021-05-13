@@ -24,10 +24,19 @@
 						<c:otherwise>
 				${qvo.title}
 				</c:otherwise>
-					</c:choose></td>
+					</c:choose>
+					</td>
 			</tr>
 		</c:forEach>
-	
+		<tr>
+		<c:choose>
+			<c:when test="${sessionScope.mvo.status==1 }">
+			<td><a
+				href="${pageContext.request.contextPath}/AddQuestionFormController.do">문제
+					추가하기</a></td>
+					</c:when>
+					</c:choose>
+		</tr>
 	</tbody>
 </table>
 
