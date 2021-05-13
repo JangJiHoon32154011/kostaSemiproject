@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+<h3>회원가입 수정</h3>
 <script type="text/javascript">
 	function checkValue() {
 		var form = document.memberInfo;
@@ -20,9 +15,16 @@
 			alert("비밀번호를 다시 확인해 주세요!");
 			return false;
 		}
-	}
-	function result() {
-		confirm("회원 정보 수정 완료!");
+		
+		if(!form.name.value) {
+			alert("이름을 입력하세요!");
+			return false;
+		}
+		
+		if(!form.email.value) {
+			alert("이메일을 입력하세요!");
+			return false;
+		}
 	}
 
 </script>
@@ -48,15 +50,9 @@
 			</tr>
 			<tr>
 				<td><input type="text" name="email" placeholder="이메일" size=15>
-					<select name="email2" onChange="mailCheck()">
-						<option>naver.com</option>
-						<option>daum.net</option>
-						<option>gmail.com</option>
-						<option>nate.com</option>
-				</select></td>
 			</tr>
 		</table>
-		<br> <button type="submit" class="btn btn-default" onclick="result()">수정하기</button>
+		<br> <button type="submit" class="btn btn-default">수정하기</button>
 	</form>
 </body>
 </html>

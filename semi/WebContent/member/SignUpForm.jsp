@@ -6,33 +6,42 @@
 	function checkValue() {
 		var form = document.memberInfo;
 		
-		if (!form.id.value) {
+		if(!form.id.value) {
 			alert("아이디를 입력하세요!");
 			return false;
 		}
 		
-		if (!form.password.value) {
+		if(!form.password.value) {
 			alert("비밀번호를 입력하세요!");
 			return false;
 		}
-		if (form.password.value != form.passwordcheck.value) {
+		
+		if(form.password.value != form.passwordcheck.value) {
 			alert("비밀번호를 다시 확인해 주세요!");
 			return false;
 		}
+		
+		if(!form.name.value) {
+			alert("이름을 입력하세요!");
+			return false;
+		}
+		
+		if(!form.email.value) {
+			alert("이메일을 입력하세요!");
+			return false;
+		}
+
+		if(form.flag.value != form.id.value) {
+			alert("아이디 중복확인 하세요!");
+			return false;
+		}
 	}
+
 	//id 중복확인
 	function idCheck() {
 		window.open("member/idCheckForm.jsp","idwindow", "width=400, height=350");
 	}
 	
-	function mailCheck() {
-		var i = document.memberInfo.email2.selectedIndex;
-		var mail = document.memberInfo.email2.options[i].value;
-		document.memberInfo.email.value = mail;
-	}
-	function result() {
-		confirm("회원 가입 완료!");
-	}
 </script>
 <body>
 	<form method="post"
@@ -40,8 +49,10 @@
 		onsubmit="return checkValue()">
 		<table class="table">
 			<tr>
-				<td><input type="text" name="id" placeholder="아이디" size=15 onkeydown="inputIdCheck()">
-					<input type="button" value="중복확인" onclick="idCheck()"></td>
+				<td><input type="text" name="id" placeholder="아이디" size=15>
+					<input type="button" value="중복확인" onclick="idCheck()">
+					<input type="hidden" name="flag" value="">
+					</td>
 			</tr>
 			<tr>
 				<td><input type="password" name="password" placeholder="비밀번호"
@@ -56,16 +67,11 @@
 			</tr>
 			<tr>
 				<td><input type="text" name="email" placeholder="이메일" size=15>
-					<select name="email2" onChange="mailCheck()">
-						<option>naver.com</option>
-						<option>daum.net</option>
-						<option>gmail.com</option>
-						<option>nate.com</option>
-				</select>
+					
 				</td>
 			</tr>
 		</table>
-		<br><button type="submit" class="btn btn-default" onclick="result()">가입하기</button>
+		<br><button type="submit" class="btn btn-default">가입하기</button>
 	</form>
 </body>
 
