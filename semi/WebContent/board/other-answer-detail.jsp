@@ -74,7 +74,6 @@ function callback(){
 		</tr>		
 		
 	</table>
-		${requestScope.likeStatus}
 		<span id="likeView" >
 		<c:choose>
 		<c:when test="${requestScope.likeStatus}">		 
