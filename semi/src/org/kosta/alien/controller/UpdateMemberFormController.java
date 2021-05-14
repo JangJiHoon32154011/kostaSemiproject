@@ -12,13 +12,15 @@ public class UpdateMemberFormController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession(false);
-		if(session==null||session.getAttribute("mvo")==null||
-				request.getMethod().equals("POST")==false){
+		
+		MemberVO mvo=(MemberVO)session.getAttribute("mvo");
+		System.out.println(mvo);
+		if(session==null||mvo==null){
 			return "redirect:index.jsp";
 		}
 		
 		request.setAttribute("url", "/mypage/UpdateMember.jsp");
-		return "/template/layout.jsp";
+		return "/template/layout_mypage.jsp";
 	}
 
 }

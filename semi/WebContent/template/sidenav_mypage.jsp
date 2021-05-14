@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class = "col-sm-2 sidenav">
-	<p><a href="${pageContext.request.contextPath}/SignUpFormController.do">회원정보수정</a></p>
+	<p><a href="${pageContext.request.contextPath}/UpdateMemberFormController.do">회원정보수정</a></p>
 		<p><a href="${pageContext.request.contextPath}/MypageController.do">내가푼문제보기 </a></p>
 	<p><a href="${pageContext.request.contextPath}/CouponViewController.do">쿠폰 보기 </a></p>
 	<br><br><br><br><br><br><br><br><br><br><br><br>

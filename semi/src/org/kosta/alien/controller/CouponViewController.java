@@ -18,7 +18,7 @@ public class CouponViewController implements Controller {
 		MemberVO mvo=(MemberVO)session.getAttribute("mvo");
 		MemberVO vo=MemberDAO.getInstance().getCouponDetail(mvo.getId());
 		request.setAttribute("vo", vo);
-		System.out.println(vo);
+		//System.out.println(vo);
 		request.setAttribute("url", "/mypage/coupon.jsp");
 		return "/template/layout_mypage.jsp";
 	}

@@ -7,8 +7,8 @@ public class SignUpFormController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setAttribute("url", "/mypage/UpdateMember.jsp");
-		return "/template/layout_mypage.jsp";
+		request.setAttribute("url", "/member/SignUpForm.jsp");
+		return "/template/layout.jsp";
 	}
 
 }
