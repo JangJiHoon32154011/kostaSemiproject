@@ -48,6 +48,14 @@ public class MemberVO {
 
 
 
+	public MemberVO(int stamp, int coupon) {
+		super();
+		this.stamp = stamp;
+		this.coupon = coupon;
+	}
+
+
+
 	public MemberVO(String id, String password, String name) {
 		super();
 		this.id = id;

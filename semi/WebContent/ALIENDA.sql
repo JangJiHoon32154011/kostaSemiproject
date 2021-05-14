@@ -14,6 +14,7 @@ status number default 0
 insert into member(id,name,password, email, stamp,status) values('2','님','1','java@java.com',15,0);
 insert into member(id,name,password, email, stamp,status) values('kim','미남','00','hi@naver.com',22,1);
 select * from member;
+select stamp, coupon from member where id='1'
 select * from JANG_ANSWER
 delete from member where id='2'
 select id, name, stamp, coupon from member where id='kim'
