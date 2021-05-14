@@ -92,8 +92,6 @@ insert into hint(question_no,hint_content) values (2,'캡슐화를 상세히 설
 
 select hint_content from hint where question_no=1;
 
-select * from hint;
-
 
 --LIKE--
 drop table answer_like
@@ -108,7 +106,7 @@ create table answer_like(
 insert into ANSWER_LIKE(id,answer_no) values('jang',5);
 insert into ANSWER_LIKE(id,answer_no) values('2',10);
 insert into ANSWER_LIKE(id,answer_no) values('3',23);
-insert into ANSWER_LIKE(id,answer_no) values('4'44);
+insert into ANSWER_LIKE(id,answer_no) values('4',44);
 
 
 	select id,answer_no from answer_like where id='4' and answer_no=4 

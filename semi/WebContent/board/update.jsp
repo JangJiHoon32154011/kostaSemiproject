@@ -16,7 +16,7 @@
     </tr> 
      </table>    
      <div class="btnArea">
-     <button type="submit" class="btn" >수정</button>  
+     <button type="submit" class="btn" >수정</button>
      <button type="reset" class="btn" >취소</button>   
     </div>  
   </form>

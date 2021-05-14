@@ -331,4 +331,27 @@ public class MemberDAO {
 		}
 		return mvo;
 	}
+	
+	public MemberVO getCouponDetail(String id) throws SQLException{
+		MemberVO mvo=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select stamp, coupon from member where id=?";
+			pstmt= con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				mvo=new MemberVO();
+				
+				mvo.setStamp(rs.getInt(1));
+				mvo.setCoupon(rs.getInt(2));
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return mvo;
+	}
 }

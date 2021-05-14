@@ -34,9 +34,8 @@ public class MypageController implements Controller {
 		ArrayList<AnswerVO> list = AnswerDAO.getInstance().getMyAnswerList(mvo.getId(),pagingBean);
 
 		request.setAttribute("list", list);
-		
 		request.setAttribute("url", "/board/mypage.jsp");
-		return "/template/layout.jsp";
+		return "/template/layout_mypage.jsp";
 	}
-
 }
+

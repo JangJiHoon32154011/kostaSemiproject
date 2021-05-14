@@ -19,33 +19,36 @@
 				<td>${avo.answerDate }</td>
 			</tr>
 		</c:forEach>
-
-		<form method="post"
-			action="${pageContext.request.contextPath}/UpdateMemberFormController.do">
-			<button type="submit" class="btn btn-default">회원정보수정</button>
-		</form>
 	</tbody>
 </table>
+
+
+
 <%-- 페이징 처리 --%>
 <%-- ${requestScope.pagingBean} --%>
 <c:set var="pb" value="${requestScope.pagingBean}"></c:set>
 <div class="pagingArea" style="text-align: center">
 	<ul class="pagination">
-	<c:if test="${pb.previousPageGroup}">
-	<li><a href="MypageController.do?id=${param.id}&pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
-	</c:if>
-		<c:forEach var="page" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
-		<c:choose>
-			<c:when test="${pb.nowPage==page}">
-			<li class="active"><a href="MypageController.do?id=${param.id}&pageNo=${page}">${page}</a></li>
-			</c:when>
-			<c:otherwise>
-			<li><a href="MypageController.do?category=${param.category}&pageNo=${page}">${page}</a></li>
-			</c:otherwise>
-		</c:choose>		
+		<c:if test="${pb.previousPageGroup}">
+			<li><a
+				href="MypageController.do?id=${param.id}&pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
+		</c:if>
+		<c:forEach var="page" begin="${pb.startPageOfPageGroup}"
+			end="${pb.endPageOfPageGroup}">
+			<c:choose>
+				<c:when test="${pb.nowPage==page}">
+					<li class="active"><a
+						href="MypageController.do?id=${param.id}&pageNo=${page}">${page}</a></li>
+				</c:when>
+				<c:otherwise>
+					<li><a
+						href="MypageController.do?category=${param.category}&pageNo=${page}">${page}</a></li>
+				</c:otherwise>
+			</c:choose>
 		</c:forEach>
-	<c:if test="${pb.nextPageGroup}">
-	<li><a href="MypageController.do?id=${param.id}&pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
-	</c:if>	
+		<c:if test="${pb.nextPageGroup}">
+			<li><a
+				href="MypageController.do?id=${param.id}&pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
+		</c:if>
 	</ul>
 </div>
