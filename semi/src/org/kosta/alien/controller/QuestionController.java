@@ -14,10 +14,10 @@ public class QuestionController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session = request.getSession(false);
-		if (session == null || session.getAttribute("mvo") == null) {
-			return "redirect:index.jsp";
-		}
+//		HttpSession session = request.getSession(false);
+//		if (session == null || session.getAttribute("mvo") == null) {
+//			return "redirect:index.jsp";
+//		}
 		int getTotalQuestionCount = QuestionBoardDAO.getInstance().getTotalQuestionCount();
 		String pageNo = request.getParameter("pageNo");
 		PagingBean pagingBean = null;
