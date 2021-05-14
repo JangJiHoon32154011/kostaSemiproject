@@ -216,8 +216,12 @@ public class AnswerDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "delete from answer where answer_no=?";
+			String sql = "delete from answer_like where answer_no=?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, ano);
+			pstmt.executeUpdate();
+			pstmt.close();
+			pstmt=con.prepareStatement("delete from answer where answer_no=?");
 			pstmt.setInt(1, ano);
 			pstmt.executeUpdate();
 		} finally {
@@ -308,8 +312,8 @@ public class AnswerDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select id, question_no, answer_no, answer_content, answer_date,hits,like_count");
-			sql.append(" from answer where answer_no=?");
+			sql.append("select id, question_no, answer_no, answer_content, answer_date,hits,like_count  ");
+			sql.append("from answer where answer_no=?");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setInt(1, ano);
 			rs = pstmt.executeQuery();
@@ -418,5 +422,25 @@ public class AnswerDAO {
 			closeAll(rs, pstmt, con);
 		}
 		return list;
+	}
+	
+	public String findIdByAnswerNo(int ano) throws SQLException{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String id=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select id from answer where answer_no=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, ano);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				id=rs.getString(1);
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return id;
 	}
 }

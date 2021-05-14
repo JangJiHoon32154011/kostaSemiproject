@@ -12,7 +12,7 @@
 		<tr >
 			<td>글번호 ${requestScope.qvo.questionNo }</td>
 			<td>제목: ${requestScope.qvo.title} </td>
-			
+			<td><a href="upload/${requestScope.qvo.picture}">${requestScope.qvo.picture}</a></td>
 		</tr>		
 		<tr>
 			<td colspan="5" >

@@ -7,6 +7,8 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+
 public class LikeDAO {
 	private static LikeDAO dao=new LikeDAO();
 	private DataSource dataSource;
@@ -129,4 +131,5 @@ public class LikeDAO {
 		}
 		return count;
 	}
+	
 }

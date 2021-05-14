@@ -70,6 +70,68 @@ public class QuestionBoardDAO {
 		}
 		return list;
 	}
+	/**
+	 * 총 문제수를 반환합니다.
+	 * 
+	 * @param category
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getTotalQuestionCount() throws SQLException {
+		int count = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT count(*) FROM question");
+			pstmt = con.prepareStatement(sql.toString());
+
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return count;
+	}
+	/***
+	 * 전체 문제를 조회한다.with paging
+	 * @return
+	 * @throws SQLException
+	 */
+	public ArrayList<QuestionVO> getPostingList(PagingBean pagingBean) throws SQLException {
+		ArrayList<QuestionVO> list = new ArrayList<QuestionVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT B.question_no, B.title " );
+			sql.append("FROM( ");
+			sql.append("SELECT row_number() over(ORDER BY question_no DESC) as rnum, ");
+			sql.append("question_no, title  ");
+			sql.append("from question  ");
+			sql.append("order by question_no desc ");
+			sql.append(") B ");
+			sql.append("WHERE rnum BETWEEN ? AND ? ");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setInt(1, pagingBean.getStartRowNumber());
+			pstmt.setInt(2, pagingBean.getEndRowNumber());
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(new QuestionVO(rs.getString(1), rs.getString(2)));
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
 
 	public ArrayList<QuestionVO> getSEList() throws SQLException {
 		ArrayList<QuestionVO> list = new ArrayList<QuestionVO>();
@@ -128,34 +190,37 @@ public class QuestionBoardDAO {
 		return list;
 	}
 
+
 	/***
 	 * 번호에 따른 문제 받아오기
+	 * 
 	 * @param questionNo
 	 * @return
 	 * @throws SQLException
 	 */
 	public QuestionVO getPostingByNo(String questionNo) throws SQLException {
 		QuestionVO qvo = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			con = dataSource.getConnection();
-			String sql = "select title, contents from question where question_no=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, questionNo);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				qvo = new QuestionVO();
-				qvo.setQuestionNo(questionNo);
-				qvo.setTitle(rs.getString(1));
-				qvo.setContents(rs.getString(2));
-
-			}
-		} finally {
-			closeAll(rs, pstmt, con);
-		}
-		return qvo;
+	      Connection con = null;
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      try {
+	         con = dataSource.getConnection();
+	         String sql = "select title, contents,category,picture from question where question_no=?";
+	         pstmt = con.prepareStatement(sql);
+	         pstmt.setString(1, questionNo);
+	         rs = pstmt.executeQuery();
+	         if (rs.next()) {
+	            qvo = new QuestionVO();
+	            qvo.setQuestionNo(questionNo);
+	            qvo.setTitle(rs.getString(1));
+	            qvo.setContents(rs.getString(2));
+	            qvo.setCategory(rs.getString(3));
+	            qvo.setPicture(rs.getString(4));
+	         }
+	      } finally {
+	         closeAll(rs, pstmt, con);
+	      }
+	      return qvo;
 	}
 
 	public void AddQuestion(QuestionVO vo) throws SQLException {
@@ -164,12 +229,14 @@ public class QuestionBoardDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("insert into question(question_no, title, contents, category) ");
-			sql.append("values(question_seq.nextval,?,?,?)");
+			sql.append("insert into question(question_no, title, contents, category,picture) ");
+			sql.append("values(question_seq.nextval,?,?,?,?)");
 			pstmt = con.prepareStatement(sql.toString());
+			
 			pstmt.setString(1, vo.getTitle());
 			pstmt.setString(2, vo.getContents());
 			pstmt.setString(3, vo.getCategory());
+			pstmt.setString(4, vo.getPicture());
 			pstmt.executeUpdate();
 		} finally {
 			closeAll(pstmt, con);
@@ -258,8 +325,6 @@ public class QuestionBoardDAO {
 		}
 		return count;
 	}
-	
-
 
 	public ArrayList<QuestionVO> getQuestionList(String category, PagingBean pagingBean) throws SQLException {
 		ArrayList<QuestionVO> list = new ArrayList<QuestionVO>();
@@ -296,51 +361,119 @@ public class QuestionBoardDAO {
 		}
 		return list;
 	}
-	
-	//힌트보기
-		public HintVO getHintByQuestionNo(String questionNo) throws SQLException{
-			HintVO hvo=null;
-			Connection con=null;
-			PreparedStatement pstmt=null;
-			ResultSet rs=null;
-			try {
-				   con=dataSource.getConnection();
-				   String sql="select hint_content from hint where question_no=?";
-				   pstmt=con.prepareStatement(sql);
-				   pstmt.setString(1, questionNo);
-				   rs=pstmt.executeQuery();
-				   if(rs.next()) {
-					   hvo=new HintVO();
-					   hvo.setContents(rs.getString(1));
-				   }
-			   }finally {
-				   closeAll(rs, pstmt, con);
-			   }
-			   return hvo;
-			
-		}
-	
-		//문제 검색
-		public ArrayList<QuestionVO> searchQuestion(String word) throws SQLException {
-			ArrayList<QuestionVO> list=new ArrayList<QuestionVO>();
-			Connection con = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs=null;
-			try { 
-				con = dataSource.getConnection();
-				StringBuilder sql = new StringBuilder();
-				sql.append("select question_no,title from question ");
-				sql.append("where title like '%' || ? || '%'");
-				pstmt = con.prepareStatement(sql.toString());
-				pstmt.setString(1, word);
-				rs =pstmt.executeQuery();
-				while(rs.next()) {
-					list.add(new QuestionVO(rs.getString(1),rs.getString(2)));
-				}
-			} finally {
-				closeAll(rs,pstmt, con);
+
+	// 힌트보기
+	public HintVO getHintByQuestionNo(String questionNo) throws SQLException {
+		HintVO hvo = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "select hint_content from hint where question_no=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, questionNo);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				hvo = new HintVO();
+				hvo.setContents(rs.getString(1));
 			}
-			return list;
-		}	
-		
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return hvo;
+
+	}
+
+	// 문제 검색
+	public ArrayList<QuestionVO> searchQuestion(String word) throws SQLException {
+		ArrayList<QuestionVO> list = new ArrayList<QuestionVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select question_no,title from question ");
+			sql.append("where title like '%' || ? || '%'");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, word);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(new QuestionVO(rs.getString(1), rs.getString(2)));
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
+
+	/***
+	 * 문제 검색 with paging
+	 * 
+	 * @param word
+	 * @return
+	 * @throws SQLException
+	 */
+	public ArrayList<QuestionVO> searchQuestion(String word, PagingBean pagingBean) throws SQLException {
+		ArrayList<QuestionVO> list = new ArrayList<QuestionVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT B.question_no, B.title ");
+			sql.append("FROM( ");
+			sql.append("SELECT row_number() over(ORDER BY question_no DESC) as rnum, ");
+			sql.append("question_no,title from question ");
+			sql.append("WHERE title like '%' || ? || '%' ");
+			sql.append("	) B ");
+			sql.append("WHERE  rnum BETWEEN ? AND ? ");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, word);
+			pstmt.setInt(2, pagingBean.getStartRowNumber());
+			pstmt.setInt(3, pagingBean.getEndRowNumber());
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(new QuestionVO(rs.getString(1), rs.getString(2)));
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
+	/**
+	 * word와 관련된 총 문제수를 반환합니다.
+	 * 
+	 * @param category
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getTotalSearchedQuestionCountByWord(String word) throws SQLException {
+		int count = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select count(*) from question ");
+			sql.append("where title like '%' || ? || '%'");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, word);
+
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return count;
+	}
+	
+	
+	
+
 }

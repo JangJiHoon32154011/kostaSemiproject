@@ -14,8 +14,7 @@ public class SignUpController implements Controller{
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		MemberDAO.getInstance().signUp(id, password, name, email);
-		request.setAttribute("url", "/board/welcome.jsp");
-		return "redirect:member/signup.jsp";
+		return "/index.jsp";
 	}
 	
 }

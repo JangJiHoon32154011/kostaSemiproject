@@ -17,12 +17,15 @@ public class PostDetailController implements Controller {
 			return "redirect:index.jsp";
 		}
 		// question NO 받기
-		String questionNo=request.getParameter("questionNo");
-		// vo NO에 따른 문제 받아오기
-		QuestionVO vo=QuestionBoardDAO.getInstance().getPostingByNo(questionNo);
-		request.setAttribute("qvo", vo);
-		request.setAttribute("url", "/board/post-detail.jsp");
-		return "/template/layout.jsp";
+	      String questionNo=request.getParameter("questionNo");
+	      // vo NO에 따른 문제 받아오기
+
+	      QuestionVO vo=QuestionBoardDAO.getInstance().getPostingByNo(questionNo);
+	      System.out.println("vo가 picture 받아오는지 확인"+vo);
+	      request.setAttribute("qvo", vo);
+	      request.setAttribute("url", "/board/post-detail.jsp");    
+
+	      return "/template/layout.jsp";
 	}
 	
 }

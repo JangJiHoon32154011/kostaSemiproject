@@ -19,5 +19,6 @@ public class AddQuestionFormController implements Controller {
 		
 		request.setAttribute("url", "/board/addQuestion.jsp");		
 		return "/template/layout.jsp";
+//		return "index.jsp";
 	}
 }

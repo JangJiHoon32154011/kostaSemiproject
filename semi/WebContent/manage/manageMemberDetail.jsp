@@ -35,8 +35,5 @@
 					action="${pageContext.request.contextPath}/ManageMemberDeleteController.do?id=${mvo.id}" method="post">
 			</form>		
 
-
-<button type="button" class="btn btn-default" onclick="deletePost()">회원 삭제</button>
-<button type="button" class="btn btn-default" onclick="updatePost()">알림 전송</button>
 </div>
 </div>
