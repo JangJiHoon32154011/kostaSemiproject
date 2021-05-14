@@ -52,7 +52,7 @@ function callback(){
      </table>    
      <div class="btnArea">
      <input type="button" value="힌트보기"  id="hint " onclick="startAjax()"><br><br>
-     <h4><span id="resultView"></span></h4>
+     <h3><span id="resultView"></span></h3>
      <br><button type="submit" class="btn" >확인</button>  
      <button type="reset" class="btn" >취소</button>   
     </div>  

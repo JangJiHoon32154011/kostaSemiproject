@@ -14,10 +14,12 @@
       <p><a href="${pageContext.request.contextPath}/ListController.do?category=se">JavaSE</a></p>
       <p><a href="${pageContext.request.contextPath}/ListController.do?category=jdbc">JavaJDBC</a></p>
       <p><a href="${pageContext.request.contextPath}/ListController.do?category=web">WebProgramming</a></p>
-      <br><br><br><br><br><br><br><br><br><br><br><br>
       <div style="text-align: center;">
-	<img src="${pageContext.request.contextPath}/img/alien.png" width="220" height="220">
+	
 </div>
     	</c:otherwise>
     	</c:choose>
+    	
+    	 <br><br><br><br><br><br><br><br><br><br><br><br>
+    	 <img src="${pageContext.request.contextPath}/img/alien.png" width="220" height="220">
     </div>
