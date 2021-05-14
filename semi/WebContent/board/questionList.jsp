@@ -27,8 +27,6 @@
 					</c:choose></td>
 			</tr>
 		</c:forEach>
-		
-		
 		<tr>
 		<c:choose>
 			<c:when test="${sessionScope.mvo.status==1 }">
@@ -38,8 +36,12 @@
 					</c:when>
 					</c:choose>
 		</tr>
-		</tbody>
+		<tr>
+		
+		</tr>
+	</tbody>
 </table>
+
 <%-- 페이징 처리 --%>
 <%-- ${requestScope.pagingBean} --%>
 <c:set var="pb" value="${requestScope.pagingBean}"></c:set>
@@ -63,3 +65,14 @@
 	</c:if>	
 	</ul>
 </div>
+
+
+
+
+
+
+
+
+
+
+

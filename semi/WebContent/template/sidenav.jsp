@@ -11,6 +11,7 @@
 
 </c:when>
     	<c:otherwise>
+	   	<p><a href="${pageContext.request.contextPath}/HomeController.do">전체 보기</a></p>
       <p><a href="${pageContext.request.contextPath}/ListController.do?category=se">JavaSE</a></p>
       <p><a href="${pageContext.request.contextPath}/ListController.do?category=jdbc">JavaJDBC</a></p>
       <p><a href="${pageContext.request.contextPath}/ListController.do?category=web">WebProgramming</a></p>

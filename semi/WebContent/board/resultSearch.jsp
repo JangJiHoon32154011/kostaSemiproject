@@ -27,8 +27,6 @@
 					</c:choose></td>
 			</tr>
 		</c:forEach>
-		
-		
 		<tr>
 		<c:choose>
 			<c:when test="${sessionScope.mvo.status==1 }">
@@ -38,28 +36,43 @@
 					</c:when>
 					</c:choose>
 		</tr>
-		</tbody>
+		<tr>
+		
+		</tr>
+	</tbody>
 </table>
+
 <%-- 페이징 처리 --%>
 <%-- ${requestScope.pagingBean} --%>
 <c:set var="pb" value="${requestScope.pagingBean}"></c:set>
 <div class="pagingArea" style="text-align: center">
 	<ul class="pagination">
 	<c:if test="${pb.previousPageGroup}">
-	<li><a href="QuestionController.do?pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
+	<li><a href="SearchController.do?word=${param.word}&pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
 	</c:if>
 		<c:forEach var="page" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
 		<c:choose>
 			<c:when test="${pb.nowPage==page}">
-			<li class="active"><a href="QuestionController.do?pageNo=${page}">${page}</a></li>
+			<li class="active"><a href="SearchController.do?word=${param.word}&pageNo=${page}">${page}</a></li>
 			</c:when>
 			<c:otherwise>
-			<li><a href="QuestionController.do?pageNo=${page}">${page}</a></li>
+			<li><a href="SearchController.do?word=${param.word}&pageNo=${page}">${page}</a></li>
 			</c:otherwise>
 		</c:choose>		
 		</c:forEach>
 	<c:if test="${pb.nextPageGroup}">
-	<li><a href="QuestionController.do?pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
+	<li><a href="SearchController.do?word=${param.word}&pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
 	</c:if>	
 	</ul>
 </div>
+
+
+
+
+
+
+
+
+
+
+
