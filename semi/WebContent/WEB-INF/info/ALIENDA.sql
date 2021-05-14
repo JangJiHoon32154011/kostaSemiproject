@@ -88,7 +88,8 @@ create table hint(
 	constraint pk_hint primary key(question_no)
 )
 
-insert into hint(question_no,hint_content) values (2,'캡슐화를 상세히 설명하시오');
+insert into hint(question_no,hint_content) values (191,'css란 종속형 시트 또는 캐스케이딩 스타일 시트(Cascading Style Sheets, CSS)이다.');
+
 
 select hint_content from hint where question_no=1;
 
