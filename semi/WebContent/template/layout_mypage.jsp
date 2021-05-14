@@ -47,6 +47,9 @@
      
       height:auto;} 
     }
+    h4{
+    	color : white;
+    }
     <%--<c:import url="/template/header.jsp"></c:import>--%>
   </style>
 </head>
