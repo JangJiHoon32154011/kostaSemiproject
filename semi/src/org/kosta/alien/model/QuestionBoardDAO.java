@@ -200,26 +200,27 @@ public class QuestionBoardDAO {
 	 */
 	public QuestionVO getPostingByNo(String questionNo) throws SQLException {
 		QuestionVO qvo = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			con = dataSource.getConnection();
-			String sql = "select title, contents from question where question_no=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, questionNo);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				qvo = new QuestionVO();
-				qvo.setQuestionNo(questionNo);
-				qvo.setTitle(rs.getString(1));
-				qvo.setContents(rs.getString(2));
-
-			}
-		} finally {
-			closeAll(rs, pstmt, con);
-		}
-		return qvo;
+	      Connection con = null;
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      try {
+	         con = dataSource.getConnection();
+	         String sql = "select title, contents,category,picture from question where question_no=?";
+	         pstmt = con.prepareStatement(sql);
+	         pstmt.setString(1, questionNo);
+	         rs = pstmt.executeQuery();
+	         if (rs.next()) {
+	            qvo = new QuestionVO();
+	            qvo.setQuestionNo(questionNo);
+	            qvo.setTitle(rs.getString(1));
+	            qvo.setContents(rs.getString(2));
+	            qvo.setCategory(rs.getString(3));
+	            qvo.setPicture(rs.getString(4));
+	         }
+	      } finally {
+	         closeAll(rs, pstmt, con);
+	      }
+	      return qvo;
 	}
 
 	public void AddQuestion(QuestionVO vo) throws SQLException {
@@ -228,12 +229,14 @@ public class QuestionBoardDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("insert into question(question_no, title, contents, category) ");
-			sql.append("values(question_seq.nextval,?,?,?)");
+			sql.append("insert into question(question_no, title, contents, category,picture) ");
+			sql.append("values(question_seq.nextval,?,?,?,?)");
 			pstmt = con.prepareStatement(sql.toString());
+			
 			pstmt.setString(1, vo.getTitle());
 			pstmt.setString(2, vo.getContents());
 			pstmt.setString(3, vo.getCategory());
+			pstmt.setString(4, vo.getPicture());
 			pstmt.executeUpdate();
 		} finally {
 			closeAll(pstmt, con);

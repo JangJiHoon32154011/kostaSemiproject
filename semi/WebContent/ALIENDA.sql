@@ -37,7 +37,8 @@ create table question(
 	contents varchar2(100) not null,
 	category varchar2(100),
 	hits number default 0,
-	answercount number default 0
+	answercount number default 0,
+	picture varchar2(100)
 )
 drop sequence question_seq;
 create sequence question_seq;
