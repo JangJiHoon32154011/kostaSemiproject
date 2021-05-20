@@ -22,5 +22,5 @@
     * 이승연(Project Writer) - [github](https://github.com/yeon-seung)
     * 양형조(SNS Manager) - [github](https://github.com/brothergive)
 
-* 프로젝트 기간 : 2021-05-06 ~ 2021-05-14
+* 프로젝트 기간 : 2021-04-30 ~ 2021-05-14
 
